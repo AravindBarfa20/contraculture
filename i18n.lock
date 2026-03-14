@@ -1,0 +1,41 @@
+version: 1
+checksums:
+  4188a166aad2705b4f09401f924502ed:
+    app.title: dbcd0d3d852f0c95082d94c14a75cc36
+    app.tagline: 689f89765c5081917c498345c42dff0e
+    app.description: 82624f5fe2e88a39a25a430e4eb4a7ae
+    nav.signIn: ec7b8f314fe9bc6591006707484ede61
+    nav.signOut: 06efb815f8e1f5d09e63d262ba48b4e7
+    nav.getStarted: 1d5f030c4ec9c869e647ae060518b948
+    projects.title: fe8af5cfb3c95cb35534872a325b225e
+    projects.subtitle: 912f4b7cdac40fab49fc426509706df7
+    projects.new: 983f6abfac9f61e4f4164f40f9b33bba
+    projects.empty: c47e0786e0589262d65dd69aec445cc4
+    projects.emptyDesc: 6821d3c1f378c00ee5911346d9363888
+    project.analyze: 84c95277006b02e2079907a9270d9510
+    project.adapt: c4ef9c5aba0161bed221d1f0b8d0ef20
+    project.simulate: f76d6fbd3e93f54b643b5afca01e8191
+    project.viewAdaptations: e406092820162da6b88375a0093e47fc
+    project.viewResults: 2149ae6a7b6ec1b355a235412f619c22
+    results.title: b8b2e2f2da0ff23a320d558c436ac298
+    results.conversionRate: 12ca02126f198cee5a1a34a4b739549d
+    results.literal: c71d4b0649dca67c5f73b21814cd4f42
+    results.adapted: 6e11d4e3b7e114e98ab90ca9530764b8
+    results.lift: c186c03be78e228fa801f6555fd6512d
+    results.visitors: 15c134ccab575338dd5cac3765b5a965
+    how.step1.title: 84c95277006b02e2079907a9270d9510
+    how.step1.desc: 62387391587c6faa7308c23906401ed5
+    how.step2.title: 73ef24dd5f8ee3b9b3d44ad8aaab2d24
+    how.step2.desc: e5f69c527456041bd3feb035d88df3c7
+    how.step3.title: 9212d79fbcffa4b7164506c8a3447dd8
+    how.step3.desc: 77ca9cd5e99f9daf5f4025e19c996ad0
+    auth.login: ec7b8f314fe9bc6591006707484ede61
+    auth.signup: 0dd2ae69be4618c1f9e615774a4509ca
+    auth.email: e7f34943a0c2fb849db1839ff6ef5cb5
+    auth.password: 223a61cf906ab9c40d22612c588dff48
+    auth.loginDesc: a452b6bc39b6fee91dfa62e089a96b1b
+    auth.signupDesc: cba828576d68e208708a2da72bf17753
+    auth.noAccount: 569a513c2dc010c2f82c752fba1f11d5
+    auth.hasAccount: 699043a787e26ec2ecad53f52df28d5b
+    footer.builtFor: 5e8cede218cdd22c7a0cd6396792ffd9
+    footer.poweredBy: 9bd981248ccff98931bad6fdb1b13c2e

@@ -1,36 +1,173 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 ContraCulture
 
-## Getting Started
+**Translation ≠ Conversion**
 
-First, run the development server:
+ContraCulture is an AI-powered product that helps companies expand globally by adapting copy to different cultures, not just translating words. It analyzes persuasion patterns in landing page copy, rewrites messaging for different markets using Hofstede’s cultural psychology framework, and simulates conversion lift across regions like Japan, Germany, and Brazil.
+
+Built for the **Lingo.dev Invite-Only Hackathon**.
+
+---
+
+## Problem
+
+Most companies localize by translating text literally.
+
+That works for language, but not for persuasion.
+
+A headline like **"Take control of your projects"** can work in the US and underperform in Japan because the underlying message is culturally individualistic. Translation preserves words. It does not preserve conversion.
+
+ContraCulture solves that gap.
+
+---
+
+## What ContraCulture Does
+
+### 1. Analyze persuasion
+It reads your landing page copy and classifies the persuasion style behind it:
+- individualist
+- collectivist
+- authority
+- scarcity
+- social proof
+- uncertainty-reducing
+- achievement
+- indulgence
+- restraint
+
+### 2. Culturally adapt copy
+It rewrites the copy for each target market using **Hofstede’s 6 cultural dimensions**:
+- Power Distance
+- Individualism
+- Masculinity
+- Uncertainty Avoidance
+- Long-Term Orientation
+- Indulgence
+
+### 3. Simulate conversion lift
+It compares:
+- literal translation
+- culturally adapted copy
+
+and shows predicted conversion improvement by market.
+
+---
+
+## Key Features
+
+- Premium landing page with advanced motion and interaction design
+- Authentication with Supabase
+- Project creation flow for landing page copy
+- Persuasion analysis using AI
+- Cultural adaptation engine using Hofstede dimensions
+- A/B simulation dashboard with charts and insights
+- Country-by-country adaptation views
+- Multilingual app UI
+- Dark mode
+- Premium dashboard UI with animated interactions
+
+---
+
+## Powered by Lingo.dev
+
+ContraCulture is not just mentioning Lingo.dev — it uses it structurally.
+
+### Lingo.dev CLI
+Used to generate multilingual locale files for the app UI.
+
+### Lingo.dev MCP
+Configured for AI coding agents through `.cursor/mcp.json`.
+
+### Lingo.dev CI/CD
+GitHub Action is set up to keep translations synced automatically.
+
+### Lingo.dev Compiler
+Integrated in the Next.js build path for build-time i18n workflow.
+
+---
+
+## Tech Stack
+
+- **Next.js 16**
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui**
+- **Framer Motion**
+- **Supabase**
+- **Groq**
+- **Recharts**
+- **Lingo.dev**
+
+---
+
+## How It Works
+
+1. Create a project
+2. Add English landing page copy
+3. Choose target markets
+4. Analyze persuasion style
+5. Generate cultural adaptations
+6. Simulate conversion outcomes
+7. Compare results across countries
+
+---
+
+## Example Use Case
+
+Original English:
+> Take control of your projects. Work smarter, not harder.
+
+Culturally adapted for Japan:
+> チームと共にプロジェクトを成功へ導きましょう。スマートに仕事をしましょう。
+
+The wording shifts from individual control to collaborative success, matching cultural expectations more closely.
+
+---
+
+## Local Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env.local` using `.env.example`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `GROQ_API_KEY`
+- `LINGODOTDEV_API_KEY`
+- `NEXT_PUBLIC_APP_URL`
+- `NEXT_PUBLIC_APP_NAME`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Current Status
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This is the public registration version of ContraCulture.
 
-## Deploy on Vercel
+Next steps:
+- final deployment
+- demo video
+- submission polish
+- additional product refinements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Why This Matters
+
+Global expansion fails when teams assume translation is enough.
+
+ContraCulture helps startups localize for **conversion**, not just **comprehension**.
+
+---
+
+## Author
+
+Built by **Aravind**  
+GitHub: [@AravindBarfa20](https://github.com/AravindBarfa20)
+

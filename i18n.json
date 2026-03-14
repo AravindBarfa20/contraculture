@@ -1,0 +1,21 @@
+{
+  "version": 1.2,
+  "locale": {
+    "source": "en",
+    "targets": [
+      "ja",
+      "de",
+      "pt-BR",
+      "fr",
+      "es"
+    ]
+  },
+  "buckets": {
+    "json": {
+      "include": [
+        "i18n/[locale].json"
+      ]
+    }
+  },
+  "$schema": "https://lingo.dev/schema/i18n.json"
+}
