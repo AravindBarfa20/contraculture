@@ -4,6 +4,8 @@
 [![Powered by Lingo.dev](https://img.shields.io/badge/Powered%20by-Lingo.dev-22c55e?style=for-the-badge)](https://lingo.dev)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge)](https://nextjs.org)
 
+🔗 **Live Demo:** [https://contraculture.vercel.app]
+
 > **"Start your free trial"** converts at 12% in the US but only 2% in Japan. Why? Because individualist framing fails in collectivist cultures. **Translation preserves words. Cultural adaptation preserves conversion.**
 
 ---
