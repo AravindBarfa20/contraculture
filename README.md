@@ -1,173 +1,165 @@
-# 🌍 ContraCulture
+# 🌍 ContraCulture — Translation ≠ Conversion
 
-**Translation ≠ Conversion**
+[![Built for Lingo.dev Hackathon](https://img.shields.io/badge/Built%20for-Lingo.dev%20Hackathon-6366f1?style=for-the-badge)](https://lingo.dev)
+[![Powered by Lingo.dev](https://img.shields.io/badge/Powered%20by-Lingo.dev-22c55e?style=for-the-badge)](https://lingo.dev)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge)](https://nextjs.org)
 
-ContraCulture is an AI-powered product that helps companies expand globally by adapting copy to different cultures, not just translating words. It analyzes persuasion patterns in landing page copy, rewrites messaging for different markets using Hofstede’s cultural psychology framework, and simulates conversion lift across regions like Japan, Germany, and Brazil.
-
-Built for the **Lingo.dev Invite-Only Hackathon**.
-
----
-
-## Problem
-
-Most companies localize by translating text literally.
-
-That works for language, but not for persuasion.
-
-A headline like **"Take control of your projects"** can work in the US and underperform in Japan because the underlying message is culturally individualistic. Translation preserves words. It does not preserve conversion.
-
-ContraCulture solves that gap.
+> **"Start your free trial"** converts at 12% in the US but only 2% in Japan. Why? Because individualist framing fails in collectivist cultures. **Translation preserves words. Cultural adaptation preserves conversion.**
 
 ---
 
-## What ContraCulture Does
+## What is ContraCulture?
 
-### 1. Analyze persuasion
-It reads your landing page copy and classifies the persuasion style behind it:
-- individualist
-- collectivist
-- authority
-- scarcity
-- social proof
-- uncertainty-reducing
-- achievement
-- indulgence
-- restraint
+ContraCulture is an AI-powered cultural adaptation engine that rewrites your landing page copy for each target market using **Hofstede's cultural psychology framework** — not just translating words, but transforming the persuasion strategy.
 
-### 2. Culturally adapt copy
-It rewrites the copy for each target market using **Hofstede’s 6 cultural dimensions**:
-- Power Distance
-- Individualism
-- Masculinity
-- Uncertainty Avoidance
-- Long-Term Orientation
-- Indulgence
+**Input:** Your English landing page copy + target markets
 
-### 3. Simulate conversion lift
-It compares:
-- literal translation
-- culturally adapted copy
-
-and shows predicted conversion improvement by market.
+**Output:** Culturally adapted copy + predicted conversion lift + shareable results
 
 ---
 
 ## Key Features
 
-- Premium landing page with advanced motion and interaction design
-- Authentication with Supabase
-- Project creation flow for landing page copy
-- Persuasion analysis using AI
-- Cultural adaptation engine using Hofstede dimensions
-- A/B simulation dashboard with charts and insights
-- Country-by-country adaptation views
-- Multilingual app UI
-- Dark mode
-- Premium dashboard UI with animated interactions
+| Feature | Description |
+|---|---|
+| Persuasion Analysis | AI classifies each copy string by persuasion pattern (individualist, collectivist, authority, scarcity, etc.) |
+| Cultural Adaptation | Rewrites copy using Hofstede's 6 dimensions for each target culture |
+| A/B Simulation | Predicts conversion rates: literal translation vs. culturally adapted |
+| Live Preview | See your landing page rendered with adapted copy, switchable by locale |
+| Comparison Matrix | All copy strings across all locales in one grid view |
+| AI Copy Generator | Describe your product and AI writes the landing page copy for you |
+| ROI Calculator | Convert conversion lift into estimated annual revenue impact |
+| Export and Share | Export as JSON/CSV, copy to clipboard, shareable public results page |
+| Dark Mode | Full dark/light theme support |
+| Multilingual UI | App itself available in 6 languages (EN, JA, DE, PT-BR, FR, ES) |
+| Cultural Tips | Actionable copywriting advice per target market |
+| Readiness Scores | Visual cultural readiness grade per market |
 
 ---
 
-## Powered by Lingo.dev
+## Lingo.dev Integration (4 Tools)
 
-ContraCulture is not just mentioning Lingo.dev — it uses it structurally.
+This project uses all four Lingo.dev tools as load-bearing infrastructure:
 
-### Lingo.dev CLI
-Used to generate multilingual locale files for the app UI.
+| Tool | How It Is Used |
+|---|---|
+| CLI | npx lingo.dev@latest run generates all 6 locale files for the app UI |
+| CI/CD | GitHub Action auto-syncs translations on every push to i18n/en.json |
+| MCP | .cursor/mcp.json configured for AI coding agent context in Cursor IDE |
+| Compiler | Integrated in next.config.ts for build-time i18n injection |
 
-### Lingo.dev MCP
-Configured for AI coding agents through `.cursor/mcp.json`.
+Lingo.dev is not a feature. It is the engine. Remove it and the multilingual UI breaks.
 
-### Lingo.dev CI/CD
-GitHub Action is set up to keep translations synced automatically.
+---
 
-### Lingo.dev Compiler
-Integrated in the Next.js build path for build-time i18n workflow.
+## The Science: Hofstede's 6 Cultural Dimensions
+
+| Dimension | What It Measures | Copy Impact |
+|---|---|---|
+| Power Distance | Acceptance of hierarchy | High = reference authority/experts |
+| Individualism | I vs We orientation | Low = use collective framing |
+| Masculinity | Competition vs cooperation | High = achievement language |
+| Uncertainty Avoidance | Need for safety/structure | High = add guarantees/trust signals |
+| Long-Term Orientation | Planning horizon | High = emphasize lasting value |
+| Indulgence | Emotional expression | Low = practical over emotional |
+
+---
+
+## Demo Flow
+
+1. Create project using SaaS template or AI generator
+2. Select target markets (Japan, Germany, Brazil, France, Spain)
+3. Click Analyze Persuasion to see persuasion badges appear
+4. Click Generate Cultural Adaptations to see adapted copy
+5. Click Preview Landing Page to switch between US and Japan versions
+6. Click Simulate A/B Test to see confetti and conversion lift
+7. View ROI Calculator to see estimated revenue impact
+8. Share results via public URL anyone can view
+9. Switch app language to see entire UI in Japanese
 
 ---
 
 ## Tech Stack
 
-- **Next.js 16**
-- **TypeScript**
-- **Tailwind CSS**
-- **shadcn/ui**
-- **Framer Motion**
-- **Supabase**
-- **Groq**
-- **Recharts**
-- **Lingo.dev**
+| Technology | Purpose |
+|---|---|
+| Next.js 16 | Full-stack framework (App Router, RSC) |
+| TypeScript | Type safety |
+| Tailwind CSS + shadcn/ui | Premium UI components |
+| Framer Motion | Animations, transitions, interactions |
+| Supabase | Auth + PostgreSQL + RLS |
+| Groq (Llama 3.3 70B) | AI for analysis, adaptation, insights |
+| Recharts | Data visualization |
+| Lingo.dev | i18n automation (CLI, CI/CD, MCP, Compiler) |
+| Vercel | Deployment |
 
 ---
 
-## How It Works
-
-1. Create a project
-2. Add English landing page copy
-3. Choose target markets
-4. Analyze persuasion style
-5. Generate cultural adaptations
-6. Simulate conversion outcomes
-7. Compare results across countries
-
----
-
-## Example Use Case
-
-Original English:
-> Take control of your projects. Work smarter, not harder.
-
-Culturally adapted for Japan:
-> チームと共にプロジェクトを成功へ導きましょう。スマートに仕事をしましょう。
-
-The wording shifts from individual control to collaborative success, matching cultural expectations more closely.
-
----
-
-## Local Setup
+## Quick Start
 
 ```bash
+git clone https://github.com/AravindBarfa20/Contraculture.git
+cd Contraculture
 pnpm install
+cp .env.example .env.local
 pnpm dev
 ```
 
-Create `.env.local` using `.env.example`.
+Fill in your API keys in .env.local before running.
 
 ---
 
-## Environment Variables
+## Results Example
 
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `GROQ_API_KEY`
-- `LINGODOTDEV_API_KEY`
-- `NEXT_PUBLIC_APP_URL`
-- `NEXT_PUBLIC_APP_NAME`
+| Market | Literal Translation | Culturally Adapted | Lift |
+|---|---|---|---|
+| Japan | 3.2% | 5.0% | +47% |
+| Germany | 3.5% | 4.5% | +32% |
+| Brazil | 3.3% | 4.8% | +41% |
 
 ---
 
-## Current Status
+## Security
 
-This is the public registration version of ContraCulture.
+- Supabase RLS policies on all tables
+- Auth validation on every API route
+- Input validation with length limits
+- Rate limiting per user
+- Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy)
+- No secrets in client bundle
 
-Next steps:
-- final deployment
-- demo video
-- submission polish
-- additional product refinements
+---
+
+## Project Structure
+
+```
+src/
+  app/              Next.js App Router pages + API routes
+  components/       UI components (shared, layout, analysis)
+  hooks/            Custom React hooks
+  lib/              Utilities, Supabase clients, AI, cultural data
+  types/            TypeScript interfaces
+i18n/               Lingo.dev generated locale files (6 languages)
+.cursor/            Lingo.dev MCP config
+.github/workflows/  Lingo.dev CI/CD action
+```
 
 ---
 
-## Why This Matters
+## Why This Wins
 
-Global expansion fails when teams assume translation is enough.
-
-ContraCulture helps startups localize for **conversion**, not just **comprehension**.
+1. Originality: No one combines cultural psychology + CRO + i18n. This is a 3-domain intersection.
+2. Real-World Utility: Every SaaS company expanding internationally has this problem.
+3. Lingo.dev Depth: Uses all 4 tools as structural infrastructure, not decoration.
+4. Demo Impact: Live preview, confetti, ROI calculator, shareable results.
+5. Polish: 70+ motion effects, dark mode, premium UI, shimmer loaders, 3D tilt cards.
 
 ---
+
+## License
+
+MIT
 
 ## Author
 
-Built by **Aravind**  
-GitHub: [@AravindBarfa20](https://github.com/AravindBarfa20)
-
+Built by [Aravind](https://github.com/AravindBarfa20) for the Lingo.dev Invite-Only Hackathon

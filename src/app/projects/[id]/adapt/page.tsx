@@ -18,6 +18,8 @@ import { DashboardBackground } from "@/components/shared/dashboard-background";
 import { MouseSpotlight } from "@/components/shared/mouse-spotlight";
 import { TiltCard } from "@/components/shared/tilt-card";
 import { AnimatedTextDiff } from "@/components/shared/animated-text-diff";
+import { CopyButton } from "@/components/shared/copy-button";
+import { ExportButton } from "@/components/shared/export-button";
 import type { Project } from "@/types";
 
 export default function AdaptationsPage({ params }: { params: Promise<{ id: string }> }) {
@@ -76,24 +78,29 @@ export default function AdaptationsPage({ params }: { params: Promise<{ id: stri
       <header className="border-b glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <AppLogo size="md" />
-          <Button variant="ghost" size="sm" onClick={() => router.push(`/projects/${id}`)}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Project
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" onClick={() => router.push(`/projects/${id}`)}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Project
+            </Button>
+          </div>
         </div>
       </header>
 
       <main className="relative container mx-auto px-4 py-8 max-w-6xl">
         <SectionReveal>
-          <div className="mb-8">
-            <Badge variant="outline" className="mb-3 text-xs font-semibold tracking-wider border-purple-300 text-purple-600 bg-purple-50/50">
-              <Globe className="w-3 h-3 mr-1.5" />
-              CULTURAL ADAPTATIONS
-            </Badge>
-            <h2 className="text-3xl font-extrabold mb-2">Cultural Adaptations</h2>
-            <p className="text-muted-foreground">
-              Side-by-side comparison of original English copy vs. culturally adapted variants
-            </p>
+          <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
+            <div>
+              <Badge variant="outline" className="mb-3 text-xs font-semibold tracking-wider border-purple-300 text-purple-600 bg-purple-50/50">
+                <Globe className="w-3 h-3 mr-1.5" />
+                CULTURAL ADAPTATIONS
+              </Badge>
+              <h2 className="text-3xl font-extrabold mb-2">Cultural Adaptations</h2>
+              <p className="text-muted-foreground">
+                Side-by-side comparison of original English copy vs. culturally adapted variants
+              </p>
+            </div>
+            <ExportButton project={project} />
           </div>
         </SectionReveal>
 
@@ -214,13 +221,14 @@ export default function AdaptationsPage({ params }: { params: Promise<{ id: stri
                       <MouseSpotlight className="rounded-2xl">
                         <Card className="border-2 overflow-hidden bg-card/90 backdrop-blur-sm">
                           <CardHeader className="pb-2">
-                            <div className="flex items-center gap-2">
-                              <Badge variant="outline" className="text-xs">
-                                {cs.string_type}
-                              </Badge>
-                              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                                Original vs Adapted
-                              </span>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Badge variant="outline" className="text-xs">{cs.string_type}</Badge>
+                                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                                  Original vs Adapted
+                                </span>
+                              </div>
+                              <CopyButton text={adaptation.content} />
                             </div>
                           </CardHeader>
                           <CardContent>

@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
+import { validateProjectInput, checkRateLimit } from "@/lib/security";
 
 export async function GET() {
   const supabase = await createClient();
@@ -38,8 +39,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  if (!checkRateLimit(user.id, 10, 60000)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment." },
+      { status: 429 }
+    );
+  }
+
   const body = await request.json();
   const { name, description, target_locales, copy_strings } = body;
+
+  const validationError = validateProjectInput(body);
+  if (validationError) {
+    return NextResponse.json({ error: validationError }, { status: 400 });
+  }
 
   if (!name || !target_locales?.length || !copy_strings?.length) {
     return NextResponse.json(
@@ -52,8 +65,8 @@ export async function POST(request: Request) {
     .from("projects")
     .insert({
       user_id: user.id,
-      name,
-      description: description || "",
+      name: name.trim(),
+      description: (description || "").trim(),
       target_locales,
       source_locale: "en",
       status: "draft",
@@ -69,7 +82,7 @@ export async function POST(request: Request) {
     (s: { string_key: string; content: string; string_type: string; sort_order: number }) => ({
       project_id: project.id,
       string_key: s.string_key,
-      content: s.content,
+      content: s.content.trim(),
       string_type: s.string_type,
       sort_order: s.sort_order,
     })

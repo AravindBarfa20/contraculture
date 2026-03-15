@@ -8,15 +8,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Sparkles, Globe, BarChart3, Trash2, CheckCircle, ChevronRight } from "lucide-react";
+import { ArrowLeft, Sparkles, Globe, BarChart3, Trash2, CheckCircle, ChevronRight, Eye, Monitor, Grid3X3 } from "lucide-react";
 import { getFlag, getCountryName } from "@/lib/utils";
 import { PERSUASION_CATEGORIES } from "@/lib/constants";
 import { LoadingSpinner } from "@/components/shared/loading-spinner";
-import { ShimmerSkeleton } from "@/components/shared/shimmer-skeleton";
-import { DashboardBackground } from "@/components/shared/dashboard-background";
-import { MouseSpotlight } from "@/components/shared/mouse-spotlight";
 import { LingoBadge } from "@/components/shared/lingo-badge";
 import { TiltCard } from "@/components/shared/tilt-card";
+import { DashboardBackground } from "@/components/shared/dashboard-background";
+import { MouseSpotlight } from "@/components/shared/mouse-spotlight";
+import { ShimmerSkeleton } from "@/components/shared/shimmer-skeleton";
+import { ShareButton } from "@/components/shared/share-button";
+import { ExportButton } from "@/components/shared/export-button";
+import { CopyButton } from "@/components/shared/copy-button";
+import { CulturalTips } from "@/components/shared/cultural-tips";
+import { AppLogo } from "@/components/shared/app-logo";
 import { triggerConfetti } from "@/lib/confetti";
 import type { Project } from "@/types";
 
@@ -36,40 +41,25 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [simulating, setSimulating] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [stepComplete, setStepComplete] = useState("");
-  const [showConfetti, setShowConfetti] = useState(false);
   const router = useRouter();
 
   const loadProject = async () => {
     const res = await fetch(`/api/projects/${id}`);
-    if (res.ok) {
-      const data = await res.json();
-      setProject(data.project);
-    }
+    if (res.ok) { const data = await res.json(); setProject(data.project); }
     setLoading(false);
   };
 
   useEffect(() => { loadProject(); }, [id]);
 
   const handleAction = async (action: string) => {
-    const setters: Record<string, (v: boolean) => void> = { 
-      analyze: setAnalyzing, 
-      adapt: setAdapting, 
-      simulate: setSimulating 
-    };
+    const setters: Record<string, (v: boolean) => void> = { analyze: setAnalyzing, adapt: setAdapting, simulate: setSimulating };
     setters[action](true);
     setStepComplete("");
-    
     const res = await fetch(`/api/projects/${id}/${action}`, { method: "POST" });
-    
     if (res.ok) {
       await loadProject();
       setStepComplete(action);
-      
-      if (action === "simulate" && !showConfetti) {
-        triggerConfetti();
-        setShowConfetti(true);
-      }
-      
+      if (action === "simulate") triggerConfetti();
       setTimeout(() => setStepComplete(""), 3000);
     }
     setters[action](false);
@@ -105,55 +95,61 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8 max-w-5xl">
-          <Skeleton className="h-8 w-48 mb-4" />
-          <Skeleton className="h-20 mb-4" />
-          <Skeleton className="h-64" />
+      <div className="relative min-h-screen bg-background overflow-hidden">
+        <DashboardBackground />
+        <div className="container mx-auto px-4 py-8 max-w-5xl space-y-6">
+          <ShimmerSkeleton className="h-10 w-64" />
+          <ShimmerSkeleton className="h-24 w-full" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <ShimmerSkeleton className="h-14 w-full" />
+            <ShimmerSkeleton className="h-14 w-full" />
+            <ShimmerSkeleton className="h-14 w-full" />
+          </div>
+          <ShimmerSkeleton className="h-64 w-full" />
         </div>
       </div>
     );
   }
 
   if (!project) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <p>Project not found</p>
-      </div>
-    );
+    return (<div className="min-h-screen bg-background flex items-center justify-center"><p>Project not found</p></div>);
   }
 
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
       <DashboardBackground />
       <header className="border-b glass sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Button variant="ghost" onClick={() => router.push("/projects")}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Projects
-          </Button>
-          <Button variant="ghost" size="sm" onClick={handleDelete} disabled={deleting}>
-            <Trash2 className="w-4 h-4 text-red-400" />
-          </Button>
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <AppLogo size="md" />
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" onClick={() => router.push("/projects")}><ArrowLeft className="w-4 h-4 mr-2" />Projects</Button>
+            <Button variant="ghost" size="sm" onClick={handleDelete} disabled={deleting}><Trash2 className="w-4 h-4 text-red-400" /></Button>
+          </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-5xl">
+      <main className="relative container mx-auto px-4 py-8 max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-2">{project.name}</h2>
-            <p className="text-muted-foreground mb-4">{project.description}</p>
-            <div className="flex gap-2 flex-wrap">
-              {project.target_locales.map((locale) => (
-                <Badge key={locale} variant="outline" className="text-sm py-1 px-3">
-                  {getFlag(locale)} {getCountryName(locale)}
-                </Badge>
-              ))}
+            <div className="flex items-start justify-between flex-wrap gap-4">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">{project.name}</h2>
+                <p className="text-muted-foreground mb-4">{project.description}</p>
+                <div className="flex gap-2 flex-wrap">
+                  {project.target_locales.map((locale) => (
+                    <Badge key={locale} variant="outline" className="text-sm py-1 px-3">{getFlag(locale)} {getCountryName(locale)}</Badge>
+                  ))}
+                </div>
+              </div>
+              <div className="flex gap-2 flex-wrap">
+                {project.status === "simulated" && <ShareButton projectId={id} />}
+                {(project.status === "adapted" || project.status === "simulated") && <ExportButton project={project} />}
+              </div>
             </div>
           </div>
 
-          <TiltCard>
-            <Card className="mb-8 border-2">
+          <TiltCard maxTilt={6}>
+            <Card className="mb-8 border-2 bg-card/90 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   {statusSteps.map((step, index) => {
@@ -162,20 +158,12 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                     return (
                       <div key={step.key} className="flex items-center flex-1">
                         <div className={`flex flex-col items-center ${isComplete ? "opacity-100" : "opacity-40"}`}>
-                          <motion.div 
-                            className={`
-                              w-12 h-12 rounded-full flex items-center justify-center text-xl mb-2 transition-all
-                              ${isCurrent ? "ring-4 ring-indigo-500/20 bg-indigo-50" : isComplete ? "bg-green-50" : "bg-muted"}
-                            `}
-                            whileHover={{ scale: 1.1 }}
-                          >
+                          <motion.div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl mb-2 transition-all ${isCurrent ? "ring-4 ring-indigo-500/20 bg-indigo-50" : isComplete ? "bg-green-50" : "bg-muted"}`} whileHover={{ scale: 1.1 }}>
                             {step.icon}
                           </motion.div>
                           <span className={`text-xs font-medium ${isCurrent ? "text-indigo-600" : ""}`}>{step.label}</span>
                         </div>
-                        {index < statusSteps.length - 1 && (
-                          <div className={`flex-1 h-0.5 mx-3 mb-6 ${index < currentStepIndex ? "bg-green-400" : "bg-border"}`} />
-                        )}
+                        {index < statusSteps.length - 1 && (<div className={`flex-1 h-0.5 mx-3 mb-6 ${index < currentStepIndex ? "bg-green-400" : "bg-border"}`} />)}
                       </div>
                     );
                   })}
@@ -187,27 +175,16 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {[
               { action: "analyze", label: "1. Analyze Persuasion", icon: Sparkles, color: "from-blue-500 to-blue-600", disabled: isProcessing },
-              { action: "adapt", label: "2. Generate Cultural Adaptations", icon: Globe, color: "from-purple-500 to-purple-600", disabled: isProcessing || project.status === "draft" },
+              { action: "adapt", label: "2. Cultural Adaptations", icon: Globe, color: "from-purple-500 to-purple-600", disabled: isProcessing || project.status === "draft" },
               { action: "simulate", label: "3. Simulate A/B Test", icon: BarChart3, color: "from-green-500 to-green-600", disabled: isProcessing || project.status === "draft" || project.status === "analyzed" },
             ].map((btn) => {
               const Icon = btn.icon;
               const isActive = btn.action === "analyze" ? analyzing : btn.action === "adapt" ? adapting : simulating;
               const isComplete = stepComplete === btn.action;
-              
               return (
                 <motion.div key={btn.action} whileHover={!btn.disabled ? { scale: 1.02 } : {}} whileTap={!btn.disabled ? { scale: 0.98 } : {}}>
-                  <Button
-                    onClick={() => handleAction(btn.action)}
-                    disabled={btn.disabled}
-                    className={`w-full h-14 bg-gradient-to-r ${btn.color} hover:brightness-110 text-white border-0 shadow-lg disabled:opacity-50 rounded-xl font-semibold`}
-                  >
-                    {isActive ? (
-                      <motion.div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />
-                    ) : isComplete ? (
-                      <><CheckCircle className="w-5 h-5 mr-2" />Done!</>
-                    ) : (
-                      <><Icon className="w-5 h-5 mr-2" />{btn.label}</>
-                    )}
+                  <Button onClick={() => handleAction(btn.action)} disabled={btn.disabled} className={`w-full h-14 bg-gradient-to-r ${btn.color} hover:brightness-110 text-white border-0 shadow-lg disabled:opacity-50 rounded-xl font-semibold`}>
+                    {isActive ? (<motion.div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />) : isComplete ? (<><CheckCircle className="w-5 h-5 mr-2" />Done!</>) : (<><Icon className="w-5 h-5 mr-2" />{btn.label}</>)}
                   </Button>
                 </motion.div>
               );
@@ -215,18 +192,26 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           </div>
 
           {(project.status === "adapted" || project.status === "simulated") && (
-            <div className="flex gap-3 mb-8">
+            <div className="flex gap-3 mb-8 flex-wrap">
+              <motion.div whileHover={{ x: 4 }}>
+                <Button variant="outline" className="border-2 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100" onClick={() => router.push(`/projects/${id}/preview`)}>
+                  <Monitor className="w-4 h-4 mr-2" />Preview Landing Page<ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </motion.div>
               <motion.div whileHover={{ x: 4 }}>
                 <Button variant="outline" className="border-2 rounded-xl" onClick={() => router.push(`/projects/${id}/adapt`)}>
-                  View Adaptations
-                  <ChevronRight className="w-4 h-4 ml-1" />
+                  <Eye className="w-4 h-4 mr-2" />View Adaptations<ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ x: 4 }}>
+                <Button variant="outline" className="border-2 rounded-xl" onClick={() => router.push(`/projects/${id}/matrix`)}>
+                  <Grid3X3 className="w-4 h-4 mr-2" />Comparison Matrix<ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
               </motion.div>
               {project.status === "simulated" && (
                 <motion.div whileHover={{ x: 4 }}>
                   <Button variant="outline" className="border-2 rounded-xl" onClick={() => router.push(`/projects/${id}/results`)}>
-                    View Results
-                    <ChevronRight className="w-4 h-4 ml-1" />
+                    <BarChart3 className="w-4 h-4 mr-2" />View Results<ChevronRight className="w-4 h-4 ml-1" />
                   </Button>
                 </motion.div>
               )}
@@ -238,60 +223,51 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}>
                 <Card className="mb-8 border-2 border-indigo-200 bg-indigo-50/50">
                   <CardContent className="pt-6">
-                    <LoadingSpinner
-                      message={
-                        analyzing ? "🔍 Analyzing persuasion patterns with AI..." :
-                        adapting ? "🌐 Generating cultural adaptations using Hofstede dimensions..." :
-                        "📊 Running A/B simulation across markets..."
-                      }
-                    />
+                    <LoadingSpinner message={analyzing ? "🔍 Analyzing persuasion patterns with AI..." : adapting ? "🌐 Generating cultural adaptations using Hofstede dimensions..." : "📊 Running A/B simulation across markets..."} />
                   </CardContent>
                 </Card>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <Separator className="mb-8" />
+          {project.status !== "draft" && (
+            <>
+              <Separator className="mb-8" />
+              <CulturalTips locales={project.target_locales} />
+              <Separator className="my-8" />
+            </>
+          )}
 
           <h3 className="text-xl font-semibold mb-4">Copy Strings</h3>
           <div className="space-y-4">
             {project.copy_strings?.map((cs, index) => {
               const persuasionStyle = getPersuasionStyle(cs.persuasion_category);
               return (
-                <motion.div
-                  key={cs.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.08 }}
-                >
-                  <TiltCard tiltAmount={5}>
-                    <Card className="border-2 hover:shadow-md transition-shadow overflow-hidden">
+                <motion.div key={cs.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.08 }}>
+                  <MouseSpotlight className="rounded-2xl">
+                    <Card className="border-2 hover:shadow-md transition-shadow overflow-hidden bg-card/90 backdrop-blur-sm">
                       <CardHeader className="pb-2">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <Badge variant="outline" className="font-medium">{cs.string_type}</Badge>
-                          {cs.persuasion_category && (
-                            <Badge className={`${persuasionStyle.bg} ${persuasionStyle.text} border ${persuasionStyle.border}`}>
-                              {cs.persuasion_category}
-                            </Badge>
-                          )}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <Badge variant="outline" className="font-medium">{cs.string_type}</Badge>
+                            {cs.persuasion_category && (<Badge className={`${persuasionStyle.bg} ${persuasionStyle.text} border ${persuasionStyle.border}`}>{cs.persuasion_category}</Badge>)}
+                          </div>
+                          <CopyButton text={cs.content} />
                         </div>
                       </CardHeader>
                       <CardContent>
                         <p className="text-lg font-medium mb-1">{cs.content}</p>
-
                         {cs.adaptations && cs.adaptations.length > 0 && (
                           <div className="mt-4 space-y-3">
                             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Cultural Adaptations</p>
                             {cs.adaptations.map((a) => (
-                              <motion.div
-                                key={a.id}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="rounded-xl p-3 bg-gradient-to-r from-muted/50 to-muted/30 border"
-                              >
-                                <div className="flex items-center gap-2 mb-1">
-                                  <span className="text-lg">{getFlag(a.locale)}</span>
-                                  <span className="text-sm font-semibold">{getCountryName(a.locale)}</span>
+                              <motion.div key={a.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl p-3 bg-gradient-to-r from-muted/50 to-muted/30 border">
+                                <div className="flex items-center justify-between mb-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-lg">{getFlag(a.locale)}</span>
+                                    <span className="text-sm font-semibold">{getCountryName(a.locale)}</span>
+                                  </div>
+                                  <CopyButton text={a.content} />
                                 </div>
                                 <p className="text-sm font-medium">{a.content}</p>
                                 <p className="text-xs text-muted-foreground mt-2 italic">{a.cultural_reasoning}</p>
@@ -301,7 +277,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                         )}
                       </CardContent>
                     </Card>
-                  </TiltCard>
+                  </MouseSpotlight>
                 </motion.div>
               );
             })}
