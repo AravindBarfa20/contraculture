@@ -10,6 +10,10 @@
 
 ---
 
+## Demo Video
+
+[Watch the demo on YouTube](https://youtu.be/L7NuoBxS6MA)
+
 ## What is ContraCulture?
 
 ContraCulture is an AI-powered cultural adaptation engine that rewrites your landing page copy for each target market using **Hofstede's cultural psychology framework** — not just translating words, but transforming the persuasion strategy.
