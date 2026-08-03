@@ -24,8 +24,8 @@ import type { Project } from "@/types";
 
 const statusConfig: Record<string, { color: string; bg: string; label: string }> = {
   draft: { color: "text-zinc-600 dark:text-zinc-400", bg: "bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700", label: "DRAFT" },
-  analyzed: { color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-500/10 border-blue-500/30", label: "ANALYZED" },
-  adapted: { color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-500/10 border-purple-500/30", label: "ADAPTED" },
+  analyzed: { color: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-500/10 border-cyan-500/30", label: "ANALYZED" },
+  adapted: { color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-500/10 border-amber-500/30", label: "ADAPTED" },
   simulated: { color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/30", label: "SIMULATED" },
 };
 
@@ -69,7 +69,7 @@ export default function ProjectsPage() {
               Manage your landing page copy and cultural adaptation pipelines
             </p>
           </div>
-          <Button onClick={() => router.push("/projects/new")} className="bg-purple-600 hover:bg-purple-700 text-white font-mono text-xs font-semibold rounded-xl shadow-md border border-purple-400/30">
+          <Button onClick={() => router.push("/projects/new")} className="bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-semibold rounded-xl shadow-md border border-emerald-400/30">
             <Plus className="w-3.5 h-3.5 mr-1.5" />+ new_project
           </Button>
         </motion.div>
@@ -90,7 +90,7 @@ export default function ProjectsPage() {
                 </div>
                 <h3 className="text-lg font-bold mb-1">No Projects Found</h3>
                 <p className="text-xs text-muted-foreground mb-6 max-w-sm mx-auto font-mono">Create your first project to start adapting copy across global markets</p>
-                <Button onClick={() => router.push("/projects/new")} className="bg-purple-600 hover:bg-purple-700 text-white font-mono text-xs font-semibold rounded-xl shadow-md">
+                <Button onClick={() => router.push("/projects/new")} className="bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-semibold rounded-xl shadow-md">
                   <Plus className="w-3.5 h-3.5 mr-1.5" />+ create_first_project
                 </Button>
               </CardContent>
@@ -102,10 +102,10 @@ export default function ProjectsPage() {
               const status = statusConfig[project.status] || statusConfig.draft;
               return (
                 <motion.div key={project.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: index * 0.05 }}>
-                  <Card className="cursor-pointer group transition-all duration-200 border border-border/80 hover:border-purple-500/50 hover:shadow-lg bg-card rounded-xl overflow-hidden" onClick={() => router.push(`/projects/${project.id}`)}>
+                  <Card className="cursor-pointer group transition-all duration-200 border border-border/80 hover:border-emerald-500/50 hover:shadow-lg bg-card rounded-xl overflow-hidden" onClick={() => router.push(`/projects/${project.id}`)}>
                     <CardHeader className="pb-3 pt-5 px-5">
                       <div className="flex items-center justify-between mb-1">
-                        <CardTitle className="text-base font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">{project.name}</CardTitle>
+                        <CardTitle className="text-base font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{project.name}</CardTitle>
                         <Badge variant="outline" className={`${status.bg} ${status.color} font-mono text-[10px] tracking-wider px-2 py-0.5 border`}>{status.label}</Badge>
                       </div>
                       <CardDescription className="line-clamp-2 text-xs text-muted-foreground leading-relaxed">{project.description}</CardDescription>

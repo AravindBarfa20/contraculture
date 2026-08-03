@@ -39,7 +39,7 @@ export default function HomePage() {
   if (!mounted) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center font-mono text-purple-400 text-xs animate-pulse">
+        <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center font-mono text-emerald-400 text-xs animate-pulse">
           CC
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-purple-500/20">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-emerald-500/20">
       <ScrollProgress />
 
       {/* Top Navbar - Glass Blur */}
@@ -65,10 +65,10 @@ export default function HomePage() {
             <Link href="/projects/new">
               <Button
                 size="sm"
-                className="bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 dark:hover:bg-white text-zinc-100 dark:text-zinc-900 border border-zinc-700/50 dark:border-zinc-300 font-mono text-xs shadow-sm transition-all"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs shadow-sm transition-all border border-emerald-500/30 font-semibold"
               >
                 + new_project
-                <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-70" />
+                <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-80" />
               </Button>
             </Link>
           </div>
@@ -81,7 +81,7 @@ export default function HomePage() {
 
         {/* Hero Section */}
         <section id="hero" ref={heroRef} className="relative pt-20 pb-16 md:pt-28 md:pb-24">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-purple-500/10 via-indigo-500/10 to-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-emerald-500/10 via-teal-500/10 to-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <motion.div
             style={{ y: heroY, opacity: heroOpacity }}
@@ -92,7 +92,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs font-mono mb-8 shadow-sm"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-mono mb-8 shadow-sm"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
               <span className="font-semibold uppercase tracking-wider">ContraCulture Engine v2.0</span>
@@ -109,7 +109,7 @@ export default function HomePage() {
             >
               Translation preserves words.
               <br />
-              <span className="bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 dark:from-purple-400 dark:via-indigo-300 dark:to-blue-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 dark:from-emerald-400 dark:via-teal-300 dark:to-cyan-300 bg-clip-text text-transparent">
                 Cultural adaptation preserves conversion.
               </span>
             </motion.h1>
@@ -134,7 +134,7 @@ export default function HomePage() {
               <span>→</span>
               <span className="text-rose-500 font-bold">2% Japan (Literal)</span>
               <span>vs</span>
-              <span className="text-purple-600 dark:text-purple-300 font-bold">14.7% Japan (Adapted)</span>
+              <span className="text-emerald-600 dark:text-emerald-300 font-bold">14.7% Japan (Adapted)</span>
             </motion.div>
 
             {/* CTA Buttons */}
@@ -147,7 +147,7 @@ export default function HomePage() {
               <Link href="/projects/new">
                 <Button
                   size="lg"
-                  className="h-12 px-8 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-mono text-sm font-semibold shadow-lg shadow-purple-500/20 border border-purple-400/30 transition-all"
+                  className="h-12 px-8 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-sm font-semibold shadow-lg shadow-emerald-500/20 border border-emerald-400/30 transition-all"
                 >
                   <Terminal className="w-4 h-4 mr-2" />
                   Start Cultural Adaptation
@@ -192,7 +192,7 @@ export default function HomePage() {
               <div className="p-6 text-xs text-zinc-300 leading-relaxed overflow-x-auto space-y-3">
                 <div className="text-zinc-500">// 1. Analyze persuasion pattern of original English string</div>
                 <div>
-                  <span className="text-purple-400">const</span> pattern = <span className="text-blue-400">analyzePersuasion</span>(<span className="text-emerald-300">&quot;Start your free trial today — boost productivity by 40%&quot;</span>);
+                  <span className="text-emerald-400">const</span> pattern = <span className="text-cyan-400">analyzePersuasion</span>(<span className="text-emerald-300">&quot;Start your free trial today — boost productivity by 40%&quot;</span>);
                 </div>
                 <div className="text-zinc-400 pl-4">
                   ➔ Pattern Classified: <span className="text-amber-400">&quot;individualist_achievement&quot;</span> <span className="text-zinc-500">(US Index: IDV 91, MAS 62)</span>
@@ -200,7 +200,7 @@ export default function HomePage() {
 
                 <div className="text-zinc-500 pt-2">// 2. Execute Hofstede transformation for Japan (IDV 46, UAI 92)</div>
                 <div>
-                  <span className="text-purple-400">const</span> adaptation = <span className="text-blue-400">adaptCopy</span>(pattern, &#123; targetLocale: <span className="text-emerald-300">&quot;ja&quot;</span> &#125;);
+                  <span className="text-emerald-400">const</span> adaptation = <span className="text-cyan-400">adaptCopy</span>(pattern, &#123; targetLocale: <span className="text-emerald-300">&quot;ja&quot;</span> &#125;);
                 </div>
                 <div className="text-emerald-400 pl-4 font-sans font-medium text-sm pt-1">
                   &ldquo;安心の無料トライアルをお試しください — チーム全体の効率化をサポート&rdquo;
@@ -227,7 +227,7 @@ export default function HomePage() {
                 { value: 30, suffix: "s", label: "Analysis Latency", sub: "Stateless AI Pipeline" },
               ].map((stat, i) => (
                 <div key={i} className="p-5 rounded-xl border border-border/70 bg-card/60 backdrop-blur-sm">
-                  <p className="text-3xl font-extrabold font-mono tracking-tight text-foreground mb-1">
+                  <p className="text-3xl font-extrabold font-mono tracking-tight text-emerald-600 dark:text-emerald-400 mb-1">
                     <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                   </p>
                   <p className="text-xs font-semibold text-foreground">{stat.label}</p>
@@ -242,7 +242,7 @@ export default function HomePage() {
         <section id="demo" className="container mx-auto px-4 py-20">
           <SectionReveal>
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/10">
+              <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 font-bold">
                 INSPECTION_TOOL // LIVE_PREVIEW
               </Badge>
               <h3 className="text-3xl font-extrabold tracking-tight mb-3">See Cultural Rewriting in Action</h3>
@@ -261,7 +261,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4 max-w-5xl">
             <SectionReveal>
               <div className="text-center mb-14">
-                <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10">
+                <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-cyan-500/30 text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 font-bold">
                   SYSTEM_PIPELINE // 3_STEPS
                 </Badge>
                 <h3 className="text-3xl font-extrabold tracking-tight mb-3">Engineered for High-Converting Growth</h3>
@@ -310,7 +310,7 @@ export default function HomePage() {
                         <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                       </div>
                       <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between">
-                        <span className="text-[10px] font-mono text-purple-600 dark:text-purple-400 font-semibold">{item.tag}</span>
+                        <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{item.tag}</span>
                         <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/40" />
                       </div>
                     </div>

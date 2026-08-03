@@ -163,7 +163,7 @@ export default function NewProjectPage() {
             <Card className="border border-border/80 overflow-hidden bg-card shadow-sm rounded-xl">
               <CardHeader className="pb-3 border-b border-border/50 bg-muted/30">
                 <div className="flex items-center gap-2">
-                  <Wand2 className="w-4 h-4 text-purple-500" />
+                  <Wand2 className="w-4 h-4 text-emerald-500" />
                   <CardTitle className="text-sm font-bold font-mono">PRESET_TEMPLATES</CardTitle>
                 </div>
                 <CardDescription className="text-xs">Quick start with pre-configured SaaS copy strings</CardDescription>
@@ -177,11 +177,11 @@ export default function NewProjectPage() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => applyTemplate(i)}
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-purple-500/80 bg-purple-500/10 text-purple-600 dark:text-purple-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-emerald-500/80 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
                     >
                       <span className="text-base">{template.emoji}</span>
                       <span>{template.name}</span>
-                      {selectedTemplate === i && <CheckCircle className="w-3.5 h-3.5 text-purple-500" />}
+                      {selectedTemplate === i && <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />}
                     </motion.button>
                   ))}
                 </div>
@@ -208,7 +208,7 @@ export default function NewProjectPage() {
               <CardHeader className="pb-3 border-b border-border/50 bg-muted/30">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-sm font-bold font-mono">TARGET_MARKETS</CardTitle>
-                  <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs font-mono text-purple-600 dark:text-purple-400 h-7">select_all</Button>
+                  <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs font-mono text-emerald-600 dark:text-emerald-400 h-7">select_all</Button>
                 </div>
               </CardHeader>
               <CardContent className="pt-4">
@@ -218,11 +218,11 @@ export default function NewProjectPage() {
                     return (
                       <motion.button key={locale.code} type="button" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                         onClick={() => toggleLocale(locale.code)}
-                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${isSelected ? "border-purple-500/60 bg-purple-500/10 text-purple-600 dark:text-purple-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
+                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${isSelected ? "border-emerald-500/60 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
                       >
                         <span className="text-base">{locale.flag}</span>
                         <span>{locale.country}</span>
-                        {isSelected && <CheckCircle className="w-3.5 h-3.5 text-purple-500" />}
+                        {isSelected && <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />}
                       </motion.button>
                     );
                   })}
