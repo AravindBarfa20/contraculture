@@ -15,6 +15,7 @@ import { DashboardBackground } from "@/components/shared/dashboard-background";
 import { MouseSpotlight } from "@/components/shared/mouse-spotlight";
 import { AIGenerator } from "@/components/shared/ai-generator";
 import { Plus, Trash2, ArrowLeft, Rocket, Wand2, CheckCircle } from "lucide-react";
+import { createProject } from "@/lib/local-projects";
 
 interface CopyField {
   string_key: string;
@@ -113,7 +114,7 @@ export default function NewProjectPage() {
     setSelectedTemplate(null);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     setError("");
@@ -122,18 +123,16 @@ export default function NewProjectPage() {
     const filledStrings = copyStrings.filter((s) => s.content.trim());
     if (filledStrings.length === 0) { setError("Add at least one copy string"); setSubmitting(false); return; }
 
-    const res = await fetch("/api/projects", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name.trim(), description: description.trim(), target_locales: targetLocales, copy_strings: filledStrings }),
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      router.push(`/projects/${data.project.id}`);
-    } else {
-      const data = await res.json();
-      setError(data.error || "Failed to create project");
+    try {
+      const project = createProject({
+        name: name.trim(),
+        description: description.trim(),
+        target_locales: targetLocales,
+        copy_strings: filledStrings,
+      });
+      router.push(`/projects/${project.id}`);
+    } catch (err) {
+      setError("Failed to create project");
     }
     setSubmitting(false);
   };

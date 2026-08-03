@@ -64,18 +64,18 @@ export default function HomePage() {
           <div className="flex gap-3 items-center">
             <LocaleSwitcher current={locale} onChange={setLocale} />
             <ThemeToggle />
-            <Link href="/login">
+            <Link href="/projects">
               <Button variant="ghost" size="sm" className="font-medium">
-                {t("nav.signIn", locale)}
+                Dashboard
               </Button>
             </Link>
             <MagneticButton>
-              <Link href="/signup">
+              <Link href="/projects/new">
                 <Button
                   size="sm"
                   className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white border-0 shadow-lg shadow-indigo-500/25 font-medium"
                 >
-                  {t("nav.getStarted", locale)}
+                  New Project
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
@@ -158,7 +158,7 @@ export default function HomePage() {
               transition={{ delay: 0.7 }}
             >
               <MagneticButton>
-                <Link href="/signup">
+                <Link href="/projects/new">
                   <Button
                     size="lg"
                     className="text-base px-10 h-14 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:from-indigo-700 hover:via-purple-700 hover:to-indigo-700 text-white border-0 shadow-2xl shadow-indigo-500/30 rounded-2xl font-semibold bg-[length:200%_auto] hover:bg-right transition-[background-position] duration-500"
@@ -310,7 +310,7 @@ export default function HomePage() {
                 <h3 className="text-4xl md:text-5xl font-extrabold mb-5">Ready to convert globally?</h3>
                 <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto">Stop losing customers to literal translations</p>
                 <MagneticButton>
-                  <Link href="/signup">
+                  <Link href="/projects/new">
                     <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-50 text-lg px-10 h-14 shadow-2xl rounded-2xl font-bold">
                       Get Started Free
                     </Button>

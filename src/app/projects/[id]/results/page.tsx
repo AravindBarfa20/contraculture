@@ -2,6 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
+import { getProject } from "@/lib/local-projects";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -34,15 +35,9 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
   const router = useRouter();
 
   useEffect(() => {
-    async function load() {
-      const res = await fetch(`/api/projects/${id}`);
-      if (res.ok) {
-        const data = await res.json();
-        setProject(data.project);
-      }
-      setLoading(false);
-    }
-    load();
+    const p = getProject(id);
+    setProject(p);
+    setLoading(false);
   }, [id]);
 
   if (loading) {

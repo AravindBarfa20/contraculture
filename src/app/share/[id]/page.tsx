@@ -14,6 +14,7 @@ import { ChartTooltip } from "@/components/shared/chart-tooltip";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell,
 } from "recharts";
+import { getProject } from "@/lib/local-projects";
 
 interface ShareResult {
   locale: string;
@@ -40,14 +41,31 @@ export default function SharePage({ params }: { params: Promise<{ id: string }> 
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function load() {
-      const res = await fetch(`/api/projects/${id}/public`);
-      if (res.ok) {
-        const json = await res.json();
-        setProject(json.project);
-        setResults(json.results || []);
-      } else {
-        setError("Project not found or not shared");
+    function load() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataParam = urlParams.get("data");
+        
+        if (dataParam) {
+          const json = JSON.parse(decodeURIComponent(atob(dataParam)));
+          setProject(json.project);
+          setResults(json.results || []);
+        } else {
+          const localProject = getProject(id);
+          if (localProject && localProject.simulation_results) {
+            setProject({
+              name: localProject.name,
+              description: localProject.description,
+              source_locale: localProject.source_locale,
+              target_locales: localProject.target_locales,
+            });
+            setResults(localProject.simulation_results);
+          } else {
+            setError("Share link is invalid or expired");
+          }
+        }
+      } catch (e) {
+        setError("Share link is invalid or expired");
       }
       setLoading(false);
     }

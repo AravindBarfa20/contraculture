@@ -2,6 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
+import { getProject } from "@/lib/local-projects";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,18 +31,12 @@ export default function AdaptationsPage({ params }: { params: Promise<{ id: stri
   const router = useRouter();
 
   useEffect(() => {
-    async function load() {
-      const res = await fetch(`/api/projects/${id}`);
-      if (res.ok) {
-        const data = await res.json();
-        setProject(data.project);
-        if (data.project.target_locales.length > 0) {
-          setActiveLocale(data.project.target_locales[0]);
-        }
-      }
-      setLoading(false);
+    const p = getProject(id);
+    setProject(p);
+    if (p && p.target_locales.length > 0) {
+      setActiveLocale(p.target_locales[0]);
     }
-    load();
+    setLoading(false);
   }, [id]);
 
   if (loading) {

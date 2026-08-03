@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { getProjects } from "@/lib/local-projects";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -36,19 +36,10 @@ export default function ProjectsPage() {
   const router = useRouter();
 
   useEffect(() => {
-    async function load() {
-      const res = await fetch("/api/projects");
-      if (res.ok) { const data = await res.json(); setProjects(data.projects); }
-      setLoading(false);
-    }
-    load();
+    const projects = getProjects();
+    setProjects(projects.map(p => ({ ...p, _count: { copy_strings: p.copy_strings?.length || 0 } })));
+    setLoading(false);
   }, []);
-
-  const handleSignOut = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push("/login");
-  };
 
   const totalStrings = projects.reduce((sum, p) => sum + p._count.copy_strings, 0);
   const totalMarkets = new Set(projects.flatMap((p) => p.target_locales)).size;
@@ -63,7 +54,6 @@ export default function ProjectsPage() {
           <div className="flex gap-3 items-center">
             <LocaleSwitcher current={locale} onChange={setLocale} />
             <ThemeToggle />
-            <Button variant="ghost" size="sm" onClick={handleSignOut}>{t("nav.signOut", locale)}</Button>
           </div>
         </div>
       </header>

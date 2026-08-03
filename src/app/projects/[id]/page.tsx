@@ -2,6 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
+import { getProject, updateProject, deleteProject } from "@/lib/local-projects";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,34 +44,90 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [stepComplete, setStepComplete] = useState("");
   const router = useRouter();
 
-  const loadProject = async () => {
-    const res = await fetch(`/api/projects/${id}`);
-    if (res.ok) { const data = await res.json(); setProject(data.project); }
+  const loadProject = () => {
+    const p = getProject(id);
+    setProject(p);
     setLoading(false);
   };
 
   useEffect(() => { loadProject(); }, [id]);
 
   const handleAction = async (action: string) => {
+    if (!project) return;
     const setters: Record<string, (v: boolean) => void> = { analyze: setAnalyzing, adapt: setAdapting, simulate: setSimulating };
     setters[action](true);
     setStepComplete("");
-    const res = await fetch(`/api/projects/${id}/${action}`, { method: "POST" });
-    if (res.ok) {
-      await loadProject();
-      setStepComplete(action);
-      if (action === "simulate") triggerConfetti();
-      setTimeout(() => setStepComplete(""), 3000);
+
+    try {
+      let body: Record<string, unknown> = {};
+      if (action === "analyze") {
+        body = { copy_strings: project.copy_strings };
+      } else if (action === "adapt") {
+        body = { copy_strings: project.copy_strings, source_locale: project.source_locale, target_locales: project.target_locales };
+      } else if (action === "simulate") {
+        body = { project_id: id, source_locale: project.source_locale, target_locales: project.target_locales };
+      }
+
+      const res = await fetch(`/api/projects/${id}/${action}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+
+        if (action === "analyze" && data.analysis) {
+          const updatedStrings = (project.copy_strings || []).map(cs => {
+            const result = data.analysis.find((a: { copy_string_id: string }) => a.copy_string_id === cs.id);
+            if (result) {
+              return { ...cs, persuasion_category: result.persuasion_category, persuasion_scores: result.persuasion_scores };
+            }
+            return cs;
+          });
+          updateProject(id, { copy_strings: updatedStrings, status: "analyzed" });
+        } else if (action === "adapt" && data.adaptations) {
+          const updatedStrings = (project.copy_strings || []).map(cs => {
+            const csAdaptations = data.adaptations.filter((a: { copy_string_id: string }) => a.copy_string_id === cs.id)
+              .map((a: { copy_string_id: string; locale: string; variant_label: string; content: string; cultural_reasoning: string; hofstede_alignment: Record<string, number> }) => ({
+                id: crypto.randomUUID(),
+                copy_string_id: a.copy_string_id,
+                locale: a.locale,
+                variant_label: a.variant_label,
+                content: a.content,
+                cultural_reasoning: a.cultural_reasoning,
+                hofstede_alignment: a.hofstede_alignment,
+                created_at: new Date().toISOString(),
+              }));
+            return { ...cs, adaptations: csAdaptations };
+          });
+          updateProject(id, { copy_strings: updatedStrings, status: "adapted" });
+        } else if (action === "simulate" && data.results) {
+          const simResults = data.results.map((r: { locale: string; variant_label: string; simulated_visitors: number; simulated_conversions: number; conversion_rate: number; confidence_level: number; is_winner: boolean; insight: string }) => ({
+            id: crypto.randomUUID(),
+            project_id: id,
+            ...r,
+            created_at: new Date().toISOString(),
+          }));
+          updateProject(id, { simulation_results: simResults, status: "simulated" });
+        }
+
+        loadProject();
+        setStepComplete(action);
+        if (action === "simulate") triggerConfetti();
+        setTimeout(() => setStepComplete(""), 3000);
+      }
+    } catch (err) {
+      console.error(`${action} failed:`, err);
     }
     setters[action](false);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (!confirm("Delete this project and all data?")) return;
     setDeleting(true);
-    const res = await fetch(`/api/projects/${id}`, { method: "DELETE" });
-    if (res.ok) router.push("/projects");
-    setDeleting(false);
+    deleteProject(id);
+    router.push("/projects");
   };
 
   const getPersuasionStyle = (category: string | null) => {

@@ -7,13 +7,20 @@ import { Button } from "@/components/ui/button";
 
 interface ShareButtonProps {
   projectId: string;
+  shareData?: { project: { name: string; description: string; source_locale: string; target_locales: string[] }; results: Array<{ locale: string; variant_label: string; simulated_visitors: number; simulated_conversions: number; conversion_rate: number; is_winner: boolean; insight: string }> };
 }
 
-export function ShareButton({ projectId }: ShareButtonProps) {
+export function ShareButton({ projectId, shareData }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    const url = `${window.location.origin}/share/${projectId}`;
+    let url: string;
+    if (shareData) {
+      const encoded = btoa(encodeURIComponent(JSON.stringify(shareData)));
+      url = `${window.location.origin}/share/${projectId}?data=${encoded}`;
+    } else {
+      url = `${window.location.origin}/share/${projectId}`;
+    }
 
     try {
       await navigator.clipboard.writeText(url);
