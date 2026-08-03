@@ -28,10 +28,9 @@ export function AppLogo({ size = "md", clickable = true }: AppLogoProps) {
         <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-white rounded-full ring-2 ring-zinc-950 animate-pulse shadow-sm" />
       </motion.div>
       <div className="flex items-center gap-1.5">
-        <span className={`${sizeMap[size].text} font-bold tracking-tight font-sans text-slate-900 dark:text-zinc-100`}>
-          Contra<span className="bg-gradient-to-r from-zinc-100 via-zinc-300 to-zinc-400 bg-clip-text text-transparent font-mono font-medium">Culture</span>
+        <span className={`${sizeMap[size].text} font-bold tracking-tight font-sans text-white`}>
+          Contra<span className="text-zinc-300 font-mono font-medium">Culture</span>
         </span>
-        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-900/80 text-zinc-300 border border-zinc-700/60 font-semibold shadow-xs">v2.0</span>
       </div>
     </div>
   );

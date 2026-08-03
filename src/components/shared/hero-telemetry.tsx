@@ -67,14 +67,14 @@ export function HeroTelemetry() {
   return (
     <div className="w-full telemetry-panel overflow-hidden font-sans border border-zinc-800">
       {/* Top Telemetry Bar */}
-      <div className="px-5 py-3 border-b border-zinc-800/80 bg-zinc-950/90 flex items-center justify-between font-mono text-xs">
-        <div className="flex items-center gap-2 text-zinc-400">
-          <Cpu className="w-3.5 h-3.5 text-zinc-200" />
-          <span className="tracking-wider uppercase text-zinc-400">CONVERSION_TELEMETRY // LIVE_BENCHMARK</span>
+      <div className="px-5 py-3.5 border-b border-zinc-800 bg-zinc-950 flex items-center justify-between font-mono text-xs">
+        <div className="flex items-center gap-2 text-zinc-200">
+          <Cpu className="w-3.5 h-3.5 text-zinc-100" />
+          <span className="tracking-wider uppercase font-bold text-zinc-200">CONVERSION_TELEMETRY // LIVE_BENCHMARK</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[11px] text-zinc-400 font-semibold">BAYESIAN_SIMULATOR</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[11px] text-zinc-200 font-semibold">BAYESIAN_SIMULATOR</span>
         </div>
       </div>
 

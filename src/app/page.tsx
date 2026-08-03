@@ -68,32 +68,32 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-40" />
 
         {/* Asymmetric Hero Section (12-Column Grid) */}
-        <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <section className="relative pt-10 pb-16 md:pt-14 md:pb-24 container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             {/* Left 7 Columns: Editorial Headline & Actions */}
-            <div className="lg:col-span-7 space-y-8 text-left">
+            <div className="lg:col-span-7 space-y-7 text-left">
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded border border-zinc-800 bg-zinc-900/90 text-zinc-300 font-mono text-xs"
+                className="inline-flex items-center gap-2 px-3 py-1 rounded border border-zinc-800 bg-zinc-900/90 text-zinc-200 font-mono text-xs shadow-sm"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="uppercase tracking-widest font-semibold text-zinc-200">ContraCulture Engine</span>
+                <span className="uppercase tracking-widest font-semibold text-white">ContraCulture Engine</span>
                 <span className="text-zinc-600">/</span>
-                <span className="text-zinc-400">Hofstede Adaptation</span>
+                <span className="text-zinc-300">Hofstede Adaptation</span>
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-display tracking-tight text-white leading-[1.05]"
+                className="text-display tracking-tight text-white leading-[1.08]"
               >
                 Translation preserves words.
                 <br />
-                <span className="text-zinc-400 font-normal">
+                <span className="text-white font-bold">
                   Cultural adaptation preserves conversion.
                 </span>
               </motion.h1>
@@ -102,7 +102,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-body-lead max-w-xl text-zinc-400"
+                className="text-body-lead max-w-xl text-zinc-300 font-medium"
               >
                 Individualist copy fails in collectivist markets. ContraCulture rewrites landing page persuasion using Hofstede psychological framework scores tailored for each global market.
               </motion.p>
