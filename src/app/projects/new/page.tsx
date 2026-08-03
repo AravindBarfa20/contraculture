@@ -160,13 +160,13 @@ export default function NewProjectPage() {
           </div>
 
           <MouseSpotlight className="rounded-2xl mb-8">
-            <Card className="border border-border/80 overflow-hidden bg-card shadow-sm rounded-xl">
-              <CardHeader className="pb-3 border-b border-border/50 bg-muted/30">
+            <Card className="border border-zinc-800 overflow-hidden bg-zinc-950 shadow-md rounded-xl">
+              <CardHeader className="pb-3 border-b border-zinc-800 bg-zinc-900/60">
                 <div className="flex items-center gap-2">
-                  <Wand2 className="w-4 h-4 text-emerald-500" />
-                  <CardTitle className="text-sm font-bold font-mono">PRESET_TEMPLATES</CardTitle>
+                  <Wand2 className="w-4 h-4 text-zinc-200" />
+                  <CardTitle className="text-sm font-bold font-mono text-white">PRESET_TEMPLATES</CardTitle>
                 </div>
-                <CardDescription className="text-xs">Quick start with pre-configured SaaS copy strings</CardDescription>
+                <CardDescription className="text-xs text-zinc-400">Quick start with pre-configured SaaS copy strings</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <div className="flex gap-3 flex-wrap">
@@ -177,11 +177,11 @@ export default function NewProjectPage() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => applyTemplate(i)}
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-emerald-500/80 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-zinc-500 bg-zinc-800 text-white font-bold shadow-md shadow-black/40" : "border-zinc-800 bg-zinc-950 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200"}`}
                     >
                       <span className="text-base">{template.emoji}</span>
                       <span>{template.name}</span>
-                      {selectedTemplate === i && <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />}
+                      {selectedTemplate === i && <CheckCircle className="w-3.5 h-3.5 text-white" />}
                     </motion.button>
                   ))}
                 </div>
@@ -190,25 +190,25 @@ export default function NewProjectPage() {
           </MouseSpotlight>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <Card className="border border-border/80 bg-card rounded-xl shadow-sm">
-              <CardHeader className="pb-3 border-b border-border/50 bg-muted/30"><CardTitle className="text-sm font-bold font-mono">PROJECT_METADATA</CardTitle></CardHeader>
+            <Card className="border border-zinc-800 bg-zinc-950 rounded-xl shadow-md">
+              <CardHeader className="pb-3 border-b border-zinc-800 bg-zinc-900/60"><CardTitle className="text-sm font-bold font-mono text-white">PROJECT_METADATA</CardTitle></CardHeader>
               <CardContent className="space-y-4 pt-4">
                 <div className="space-y-1.5">
-                  <Label htmlFor="name" className="text-xs font-mono">PROJECT_NAME *</Label>
-                  <Input id="name" placeholder="e.g., Global SaaS Landing Page" value={name} onChange={(e) => setName(e.target.value)} className="h-10 text-sm font-sans" />
+                  <Label htmlFor="name" className="text-xs font-mono text-zinc-300">PROJECT_NAME *</Label>
+                  <Input id="name" placeholder="e.g., Global SaaS Landing Page" value={name} onChange={(e) => setName(e.target.value)} className="h-10 text-sm font-sans bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600" />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="description" className="text-xs font-mono">DESCRIPTION</Label>
-                  <Textarea id="description" placeholder="Brief description of the product or campaign target..." value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="text-sm font-sans resize-none" />
+                  <Label htmlFor="description" className="text-xs font-mono text-zinc-300">DESCRIPTION</Label>
+                  <Textarea id="description" placeholder="Brief description of the product or campaign target..." value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="text-sm font-sans resize-none bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border border-border/80 bg-card rounded-xl shadow-sm">
-              <CardHeader className="pb-3 border-b border-border/50 bg-muted/30">
+            <Card className="border border-zinc-800 bg-zinc-950 rounded-xl shadow-md">
+              <CardHeader className="pb-3 border-b border-zinc-800 bg-zinc-900/60">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-bold font-mono">TARGET_MARKETS</CardTitle>
-                  <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs font-mono text-emerald-600 dark:text-emerald-400 h-7">select_all</Button>
+                  <CardTitle className="text-sm font-bold font-mono text-white">TARGET_MARKETS</CardTitle>
+                  <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs font-mono text-zinc-300 hover:text-white h-7">select_all</Button>
                 </div>
               </CardHeader>
               <CardContent className="pt-4">
@@ -218,11 +218,11 @@ export default function NewProjectPage() {
                     return (
                       <motion.button key={locale.code} type="button" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                         onClick={() => toggleLocale(locale.code)}
-                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${isSelected ? "border-emerald-500/60 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
+                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${isSelected ? "border-zinc-500 bg-zinc-800 text-white font-bold shadow-md shadow-black/40" : "border-zinc-800 bg-zinc-950 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200"}`}
                       >
                         <span className="text-base">{locale.flag}</span>
                         <span>{locale.country}</span>
-                        {isSelected && <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />}
+                        {isSelected && <CheckCircle className="w-3.5 h-3.5 text-white" />}
                       </motion.button>
                     );
                   })}

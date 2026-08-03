@@ -20,18 +20,18 @@ export function AppLogo({ size = "md", clickable = true }: AppLogoProps) {
   const content = (
     <div className="flex items-center gap-2.5">
       <motion.div
-        className={`relative flex items-center justify-center ${sizeMap[size].icon} rounded-lg bg-zinc-900 border border-zinc-800 text-white font-mono font-bold shadow-sm dark:bg-zinc-900 dark:border-zinc-700/80`}
+        className={`relative flex items-center justify-center ${sizeMap[size].icon} rounded-lg bg-gradient-to-b from-zinc-800 to-zinc-950 border border-zinc-700/80 text-white font-mono font-bold shadow-md shadow-black/40`}
         whileHover={clickable ? { scale: 1.05 } : {}}
         transition={{ duration: 0.2 }}
       >
-        <span className="bg-gradient-to-tr from-emerald-400 to-teal-300 bg-clip-text text-transparent font-mono">CC</span>
-        <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full ring-2 ring-background animate-pulse" />
+        <span className="bg-gradient-to-b from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-mono font-extrabold">CC</span>
+        <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-white rounded-full ring-2 ring-zinc-950 animate-pulse shadow-sm" />
       </motion.div>
       <div className="flex items-center gap-1.5">
-        <span className={`${sizeMap[size].text} font-semibold tracking-tight font-sans text-slate-900 dark:text-slate-100`}>
-          Contra<span className="text-emerald-500 dark:text-emerald-400 font-mono font-medium">Culture</span>
+        <span className={`${sizeMap[size].text} font-bold tracking-tight font-sans text-slate-900 dark:text-zinc-100`}>
+          Contra<span className="bg-gradient-to-r from-zinc-100 via-zinc-300 to-zinc-400 bg-clip-text text-transparent font-mono font-medium">Culture</span>
         </span>
-        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-bold">v2.0</span>
+        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-900/80 text-zinc-300 border border-zinc-700/60 font-semibold shadow-xs">v2.0</span>
       </div>
     </div>
   );

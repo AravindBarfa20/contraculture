@@ -14,10 +14,10 @@ interface DashboardStatsProps {
 
 export function DashboardStats({ totalProjects, totalStrings, totalMarkets, completedProjects }: DashboardStatsProps) {
   const stats = [
-    { icon: FolderOpen, label: "Total Projects", value: totalProjects, color: "border-l-blue-500", text: "text-foreground" },
-    { icon: Languages, label: "Copy Strings", value: totalStrings, color: "border-l-purple-500", text: "text-foreground" },
-    { icon: Globe, label: "Target Markets", value: totalMarkets, color: "border-l-amber-500", text: "text-foreground" },
-    { icon: BarChart3, label: "Simulated Tests", value: completedProjects, color: "border-l-emerald-500", text: "text-emerald-600 dark:text-emerald-400" },
+    { icon: FolderOpen, label: "Total Projects", value: totalProjects, color: "border-l-zinc-500", text: "text-white" },
+    { icon: Languages, label: "Copy Strings", value: totalStrings, color: "border-l-zinc-400", text: "text-white" },
+    { icon: Globe, label: "Target Markets", value: totalMarkets, color: "border-l-zinc-300", text: "text-white" },
+    { icon: BarChart3, label: "Simulated Tests", value: completedProjects, color: "border-l-white", text: "text-white" },
   ];
 
   if (totalProjects === 0) return null;
@@ -33,15 +33,15 @@ export function DashboardStats({ totalProjects, totalStrings, totalMarkets, comp
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
           >
-            <Card className={`border border-border/80 border-l-4 ${stat.color} bg-card p-4 rounded-xl shadow-sm`}>
+            <Card className={`border border-zinc-800 border-l-4 ${stat.color} bg-zinc-950 p-4 rounded-xl shadow-md`}>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-1">{stat.label}</p>
+                  <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">{stat.label}</p>
                   <p className={`text-2xl font-extrabold font-mono tracking-tight ${stat.text}`}>
                     <AnimatedCounter end={stat.value} />
                   </p>
                 </div>
-                <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground">
+                <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
                   <Icon className="w-4 h-4" />
                 </div>
               </div>

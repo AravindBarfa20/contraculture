@@ -32,45 +32,45 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.995 0.002 240);
-  --foreground: oklch(0.12 0.02 260);
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.09 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0.02 260);
+  --card-foreground: oklch(0.09 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.02 260);
-  --primary: oklch(0.55 0.18 160);
+  --popover-foreground: oklch(0.09 0 0);
+  --primary: oklch(0.12 0 0);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.008 240);
-  --secondary-foreground: oklch(0.20 0.02 260);
-  --muted: oklch(0.96 0.006 240);
-  --muted-foreground: oklch(0.48 0.02 260);
-  --accent: oklch(0.95 0.01 240);
-  --accent-foreground: oklch(0.20 0.02 260);
-  --destructive: oklch(0.60 0.22 25);
-  --border: oklch(0.90 0.008 240);
-  --input: oklch(0.90 0.008 240);
-  --ring: oklch(0.55 0.18 160);
+  --secondary: oklch(0.95 0 0);
+  --secondary-foreground: oklch(0.15 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.42 0 0);
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.12 0 0);
+  --destructive: oklch(0.30 0 0);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.12 0 0);
 }
 
 .dark {
-  --background: oklch(0.10 0.015 260);
-  --foreground: oklch(0.98 0.003 240);
-  --card: oklch(0.135 0.015 260);
-  --card-foreground: oklch(0.98 0.003 240);
-  --popover: oklch(0.135 0.015 260);
-  --popover-foreground: oklch(0.98 0.003 240);
-  --primary: oklch(0.65 0.18 160);
-  --primary-foreground: oklch(0.10 0.015 260);
-  --secondary: oklch(0.18 0.015 260);
-  --secondary-foreground: oklch(0.98 0.003 240);
-  --muted: oklch(0.16 0.015 260);
-  --muted-foreground: oklch(0.65 0.015 260);
-  --accent: oklch(0.18 0.015 260);
-  --accent-foreground: oklch(0.98 0.003 240);
-  --destructive: oklch(0.65 0.22 25);
-  --border: oklch(0.20 0.015 260);
-  --input: oklch(0.20 0.015 260);
-  --ring: oklch(0.65 0.18 160);
+  --background: oklch(0.07 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.10 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.10 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.07 0 0);
+  --secondary: oklch(0.16 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.14 0 0);
+  --muted-foreground: oklch(0.60 0 0);
+  --accent: oklch(0.16 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.80 0 0);
+  --border: oklch(0.18 0 0);
+  --input: oklch(0.18 0 0);
+  --ring: oklch(0.90 0 0);
 }
 
 @layer base {
@@ -89,75 +89,66 @@
   }
 
   ::selection {
-    background: rgba(16, 185, 129, 0.25);
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
   }
 }
 
-/* Senior Frontend Engineer Grid & Glow pattern utilities */
+/* Luxury Monochrome Metallic Silver & Titanium utilities */
 .bg-grid-pattern {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 .dark .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
-.bg-dot-pattern {
-  background-size: 20px 20px;
-  background-image: radial-gradient(circle, rgba(120, 120, 120, 0.12) 1px, transparent 1px);
-}
-
-.gradient-text-emerald {
-  background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
+.gradient-text-metallic {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 40%, #64748b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-linear {
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.65) 100%);
+.gradient-text-silver {
+  background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+.metallic-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-.dark .glass-card {
-  background: rgba(18, 18, 22, 0.85);
-  backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.metallic-button {
+  background: linear-gradient(180deg, #27272a 0%, #09090b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
 }
 
-.glow-border {
-  position: relative;
+.metallic-button:hover {
+  background: linear-gradient(180deg, #3f3f46 0%, #18181b 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
-.glow-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.4));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+.metallic-badge {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f4f4f5;
 }
 
-.glow-pill {
-  box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.25);
+.glow-metallic {
+  box-shadow: 0 0 25px -5px rgba(255, 255, 255, 0.12);
 }
 
 .card-hover-lift {

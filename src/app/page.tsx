@@ -39,7 +39,7 @@ export default function HomePage() {
   if (!mounted) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center font-mono text-emerald-400 text-xs animate-pulse">
+        <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center font-mono text-zinc-300 text-xs animate-pulse">
           CC
         </div>
       </div>
@@ -47,25 +47,25 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-emerald-500/20">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-white/20">
       <ScrollProgress />
 
       {/* Top Navbar - Glass Blur */}
-      <header className="border-b border-border/60 bg-background/80 backdrop-blur-xl sticky top-0 z-50 transition-colors">
+      <header className="border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl sticky top-0 z-50 transition-colors">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <AppLogo size="md" />
           <div className="flex gap-3 items-center">
             <LocaleSwitcher current={locale} onChange={setLocale} />
             <ThemeToggle />
             <Link href="/projects">
-              <Button variant="ghost" size="sm" className="font-medium text-xs font-mono">
+              <Button variant="ghost" size="sm" className="font-medium text-xs font-mono text-zinc-300 hover:text-white">
                 /dashboard
               </Button>
             </Link>
             <Link href="/projects/new">
               <Button
                 size="sm"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs shadow-sm transition-all border border-emerald-500/30 font-semibold"
+                className="bg-gradient-to-b from-zinc-100 to-zinc-300 hover:from-white hover:to-zinc-200 text-zinc-950 font-mono text-xs shadow-md border border-white/40 font-bold transition-all"
               >
                 + new_project
                 <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-80" />
@@ -77,11 +77,11 @@ export default function HomePage() {
 
       <main className="relative">
         {/* Subtle Engineering Grid Background */}
-        <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60" />
+        <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-40" />
 
         {/* Hero Section */}
         <section id="hero" ref={heroRef} className="relative pt-20 pb-16 md:pt-28 md:pb-24">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-emerald-500/10 via-teal-500/10 to-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-b from-zinc-700/10 via-zinc-800/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
           <motion.div
             style={{ y: heroY, opacity: heroOpacity }}
@@ -92,12 +92,12 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-mono mb-8 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-700/80 bg-zinc-900/90 text-zinc-200 text-xs font-mono mb-8 shadow-md"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-              <span className="font-semibold uppercase tracking-wider">ContraCulture Engine v2.0</span>
+              <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+              <span className="font-semibold uppercase tracking-wider text-white">ContraCulture Engine v2.0</span>
               <span className="opacity-40">|</span>
-              <span className="opacity-80">Hofstede Cultural Adapter</span>
+              <span className="opacity-80 text-zinc-400">Hofstede Cultural Adapter</span>
             </motion.div>
 
             {/* Main Headline */}
@@ -109,13 +109,13 @@ export default function HomePage() {
             >
               Translation preserves words.
               <br />
-              <span className="bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 dark:from-emerald-400 dark:via-teal-300 dark:to-cyan-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-b from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
                 Cultural adaptation preserves conversion.
               </span>
             </motion.h1>
 
             <motion.p
-              className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed"
+              className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto mb-6 leading-relaxed"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -125,16 +125,16 @@ export default function HomePage() {
 
             {/* Callout Stats Banner */}
             <motion.div
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-zinc-900/5 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700/60 text-xs font-mono text-muted-foreground mb-10"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-zinc-900/90 border border-zinc-800 text-xs font-mono text-zinc-300 mb-10 shadow-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <span className="text-emerald-600 dark:text-emerald-400 font-bold">12% US conversion</span>
-              <span>→</span>
-              <span className="text-rose-500 font-bold">2% Japan (Literal)</span>
-              <span>vs</span>
-              <span className="text-emerald-600 dark:text-emerald-300 font-bold">14.7% Japan (Adapted)</span>
+              <span className="text-white font-bold">12% US conversion</span>
+              <span className="text-zinc-600">→</span>
+              <span className="text-zinc-400 font-bold">2% Japan (Literal)</span>
+              <span className="text-zinc-600">vs</span>
+              <span className="text-white font-extrabold underline decoration-zinc-500 underline-offset-4">14.7% Japan (Adapted)</span>
             </motion.div>
 
             {/* CTA Buttons */}
@@ -147,9 +147,9 @@ export default function HomePage() {
               <Link href="/projects/new">
                 <Button
                   size="lg"
-                  className="h-12 px-8 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-sm font-semibold shadow-lg shadow-emerald-500/20 border border-emerald-400/30 transition-all"
+                  className="h-12 px-8 rounded-xl bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-400 hover:from-white hover:to-zinc-300 text-zinc-950 font-mono text-sm font-bold shadow-xl border border-white/50 transition-all"
                 >
-                  <Terminal className="w-4 h-4 mr-2" />
+                  <Terminal className="w-4 h-4 mr-2 text-zinc-950" />
                   Start Cultural Adaptation
                   <ArrowRight className="w-4 h-4 ml-2 opacity-80" />
                 </Button>
@@ -159,7 +159,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-12 px-8 rounded-xl border-border bg-card/80 backdrop-blur-sm text-sm font-mono font-medium hover:bg-accent transition-all"
+                  className="h-12 px-8 rounded-xl border border-zinc-800 bg-zinc-950/80 backdrop-blur-sm text-sm font-mono font-medium hover:bg-zinc-900 text-zinc-300 transition-all"
                 >
                   <Code className="w-4 h-4 mr-2 opacity-70" />
                   View Interactive Demo
@@ -178,31 +178,31 @@ export default function HomePage() {
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden text-left font-mono">
               <div className="px-4 py-3 bg-zinc-900/90 border-b border-zinc-800 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-zinc-700" />
+                  <div className="w-3 h-3 rounded-full bg-zinc-700" />
+                  <div className="w-3 h-3 rounded-full bg-zinc-700" />
                   <span className="text-xs text-zinc-400 ml-2">contraculture-pipeline.ts</span>
                 </div>
-                <div className="text-[11px] text-zinc-500 flex items-center gap-3">
-                  <span className="text-emerald-400 font-semibold">● LIVE</span>
+                <div className="text-[11px] text-zinc-400 flex items-center gap-3">
+                  <span className="text-white font-semibold">● LIVE</span>
                   <span>GROQ Llama3.3 70B</span>
                 </div>
               </div>
 
-              <div className="p-6 text-xs text-zinc-300 leading-relaxed overflow-x-auto space-y-3">
+              <div className="p-6 text-xs text-zinc-300 leading-relaxed overflow-x-auto space-y-3 bg-zinc-950">
                 <div className="text-zinc-500">// 1. Analyze persuasion pattern of original English string</div>
                 <div>
-                  <span className="text-emerald-400">const</span> pattern = <span className="text-cyan-400">analyzePersuasion</span>(<span className="text-emerald-300">&quot;Start your free trial today — boost productivity by 40%&quot;</span>);
+                  <span className="text-zinc-100 font-bold">const</span> pattern = <span className="text-zinc-300">analyzePersuasion</span>(<span className="text-zinc-400">&quot;Start your free trial today — boost productivity by 40%&quot;</span>);
                 </div>
                 <div className="text-zinc-400 pl-4">
-                  ➔ Pattern Classified: <span className="text-amber-400">&quot;individualist_achievement&quot;</span> <span className="text-zinc-500">(US Index: IDV 91, MAS 62)</span>
+                  ➔ Pattern Classified: <span className="text-white font-bold">&quot;individualist_achievement&quot;</span> <span className="text-zinc-500">(US Index: IDV 91, MAS 62)</span>
                 </div>
 
                 <div className="text-zinc-500 pt-2">// 2. Execute Hofstede transformation for Japan (IDV 46, UAI 92)</div>
                 <div>
-                  <span className="text-emerald-400">const</span> adaptation = <span className="text-cyan-400">adaptCopy</span>(pattern, &#123; targetLocale: <span className="text-emerald-300">&quot;ja&quot;</span> &#125;);
+                  <span className="text-zinc-100 font-bold">const</span> adaptation = <span className="text-zinc-300">adaptCopy</span>(pattern, &#123; targetLocale: <span className="text-zinc-400">&quot;ja&quot;</span> &#125;);
                 </div>
-                <div className="text-emerald-400 pl-4 font-sans font-medium text-sm pt-1">
+                <div className="text-white pl-4 font-sans font-medium text-sm pt-1">
                   &ldquo;安心の無料トライアルをお試しください — チーム全体の効率化をサポート&rdquo;
                 </div>
                 <div className="text-zinc-500 pl-4 text-[11px]">
@@ -226,12 +226,12 @@ export default function HomePage() {
                 { value: 6, suffix: "", label: "Hofstede Dimensions", sub: "IDV, PDI, MAS, UAI, LTO, IND" },
                 { value: 30, suffix: "s", label: "Analysis Latency", sub: "Stateless AI Pipeline" },
               ].map((stat, i) => (
-                <div key={i} className="p-5 rounded-xl border border-border/70 bg-card/60 backdrop-blur-sm">
-                  <p className="text-3xl font-extrabold font-mono tracking-tight text-emerald-600 dark:text-emerald-400 mb-1">
+                <div key={i} className="p-5 rounded-xl border border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
+                  <p className="text-3xl font-extrabold font-mono tracking-tight text-white mb-1">
                     <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                   </p>
-                  <p className="text-xs font-semibold text-foreground">{stat.label}</p>
-                  <p className="text-[11px] text-muted-foreground mt-0.5 font-mono">{stat.sub}</p>
+                  <p className="text-xs font-semibold text-zinc-300">{stat.label}</p>
+                  <p className="text-[11px] text-zinc-500 mt-0.5 font-mono">{stat.sub}</p>
                 </div>
               ))}
             </div>
@@ -242,11 +242,11 @@ export default function HomePage() {
         <section id="demo" className="container mx-auto px-4 py-20">
           <SectionReveal>
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 font-bold">
+              <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-zinc-700 text-zinc-300 bg-zinc-900 font-bold">
                 INSPECTION_TOOL // LIVE_PREVIEW
               </Badge>
               <h3 className="text-3xl font-extrabold tracking-tight mb-3">See Cultural Rewriting in Action</h3>
-              <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+              <p className="text-sm text-zinc-400 max-w-lg mx-auto">
                 Compare literal word-for-word translation against Hofstede-driven persuasion copy
               </p>
             </div>
@@ -257,15 +257,15 @@ export default function HomePage() {
         </section>
 
         {/* Workflow Architecture Section */}
-        <section id="how-it-works" className="py-20 border-t border-b border-border/50 bg-zinc-900/5 dark:bg-zinc-900/30">
+        <section id="how-it-works" className="py-20 border-t border-b border-zinc-800/80 bg-zinc-950/60">
           <div className="container mx-auto px-4 max-w-5xl">
             <SectionReveal>
               <div className="text-center mb-14">
-                <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-cyan-500/30 text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 font-bold">
+                <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-zinc-700 text-zinc-300 bg-zinc-900 font-bold">
                   SYSTEM_PIPELINE // 3_STEPS
                 </Badge>
                 <h3 className="text-3xl font-extrabold tracking-tight mb-3">Engineered for High-Converting Growth</h3>
-                <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+                <p className="text-sm text-zinc-400 max-w-lg mx-auto">
                   From raw input to simulated market lift in seconds
                 </p>
               </div>
@@ -298,20 +298,20 @@ export default function HomePage() {
                 const Icon = item.icon;
                 return (
                   <SectionReveal key={i} delay={i * 0.1}>
-                    <div className="p-6 rounded-xl border border-border/70 bg-card backdrop-blur-sm h-full flex flex-col justify-between">
+                    <div className="p-6 rounded-xl border border-zinc-800 bg-zinc-950 backdrop-blur-sm h-full flex flex-col justify-between">
                       <div>
                         <div className="flex items-center justify-between mb-4">
-                          <div className="w-10 h-10 rounded-lg bg-zinc-900 dark:bg-zinc-800 text-white flex items-center justify-center font-mono">
+                          <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 text-white flex items-center justify-center font-mono">
                             <Icon className="w-5 h-5" />
                           </div>
-                          <span className="text-xs font-mono font-bold text-muted-foreground/60">{item.step}</span>
+                          <span className="text-xs font-mono font-bold text-zinc-500">{item.step}</span>
                         </div>
-                        <h4 className="text-base font-bold mb-2">{item.title}</h4>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                        <h4 className="text-base font-bold mb-2 text-white">{item.title}</h4>
+                        <p className="text-xs text-zinc-400 leading-relaxed">{item.desc}</p>
                       </div>
-                      <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between">
-                        <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{item.tag}</span>
-                        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/40" />
+                      <div className="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between">
+                        <span className="text-[10px] font-mono text-zinc-300 font-semibold">{item.tag}</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-zinc-600" />
                       </div>
                     </div>
                   </SectionReveal>

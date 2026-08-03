@@ -60,19 +60,19 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
   };
 
   return (
-    <Card className="border-2 border-dashed border-teal-300 bg-gradient-to-br from-teal-50/50 to-amber-50/50 dark:from-teal-950/20 dark:to-amber-950/20 overflow-hidden">
+    <Card className="border border-zinc-800 bg-zinc-950 overflow-hidden shadow-md">
       <CardHeader className="pb-2 cursor-pointer" onClick={() => setExpanded(!expanded)}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-amber-500 flex items-center justify-center shadow-lg">
-              <Wand2 className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center shadow-sm">
+              <Wand2 className="w-4 h-4 text-white" />
             </div>
             <div>
-              <CardTitle className="text-base">AI Copy Generator</CardTitle>
-              <CardDescription className="text-xs">Describe your product and AI writes the copy</CardDescription>
+              <CardTitle className="text-sm font-bold font-mono text-white">AI_COPY_GENERATOR</CardTitle>
+              <CardDescription className="text-xs text-zinc-400">Describe your product and AI writes the copy</CardDescription>
             </div>
           </div>
-          <Badge variant="outline" className="border-teal-300 text-teal-700 bg-teal-50 font-semibold">
+          <Badge variant="outline" className="border-zinc-700 text-zinc-300 bg-zinc-900 text-xs font-mono">
             {expanded ? "Collapse" : "Try it"}
           </Badge>
         </div>
@@ -87,34 +87,34 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
             transition={{ duration: 0.3 }}
           >
             <CardContent className="space-y-4 pt-2">
-              <div className="space-y-2">
-                <Label>Describe your product</Label>
+              <div className="space-y-1.5">
+                <Label className="text-xs font-mono text-zinc-300">PRODUCT_DESCRIPTION</Label>
                 <Textarea
                   placeholder="e.g., A project management tool for remote teams that uses AI to automate task assignment..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={3}
-                  className="resize-none"
+                  className="resize-none text-sm bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label className="text-xs">Industry (optional)</Label>
+                  <Label className="text-xs font-mono text-zinc-300">INDUSTRY (OPTIONAL)</Label>
                   <Input
                     placeholder="e.g., SaaS, E-commerce"
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
-                    className="h-9 text-sm"
+                    className="h-9 text-sm bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600"
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label className="text-xs">Target Audience (optional)</Label>
+                  <Label className="text-xs font-mono text-zinc-300">TARGET_AUDIENCE (OPTIONAL)</Label>
                   <Input
                     placeholder="e.g., Startup founders"
                     value={audience}
                     onChange={(e) => setAudience(e.target.value)}
-                    className="h-9 text-sm"
+                    className="h-9 text-sm bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600"
                   />
                 </div>
               </div>
@@ -122,11 +122,11 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
               <Button
                 onClick={handleGenerate}
                 disabled={generating || !description.trim()}
-                className="w-full bg-gradient-to-r from-teal-600 via-amber-600 to-rose-600 hover:from-teal-700 hover:to-rose-700 text-white border-0 rounded-xl font-semibold shadow-md"
+                className="w-full bg-gradient-to-b from-zinc-100 to-zinc-300 hover:from-white hover:to-zinc-200 text-zinc-950 font-mono text-xs font-bold rounded-xl shadow-md border border-white/40"
               >
                 {generating ? (
                   <motion.div
-                    className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                    className="w-4 h-4 border-2 border-zinc-950/30 border-t-zinc-950 rounded-full"
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                   />
@@ -144,7 +144,7 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-3"
                 >
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Generated Copy</p>
+                  <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider">GENERATED_COPY</p>
 
                   {[
                     { label: "Headline", value: generated.headline },
@@ -153,15 +153,15 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
                     { label: "Value Prop", value: generated.value_prop },
                     { label: "Social Proof", value: generated.social_proof },
                   ].map((item) => (
-                    <div key={item.label} className="bg-white dark:bg-gray-900 rounded-lg border p-3">
-                      <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
-                      <p className="text-sm font-medium">{item.value}</p>
+                    <div key={item.label} className="bg-zinc-900 rounded-lg border border-zinc-800 p-3">
+                      <p className="text-xs font-mono text-zinc-400 mb-1">{item.label}</p>
+                      <p className="text-sm font-medium text-white">{item.value}</p>
                     </div>
                   ))}
 
                   <Button
                     onClick={handleUse}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white border-0 rounded-xl font-semibold"
+                    className="w-full bg-white text-zinc-950 hover:bg-zinc-100 border-0 rounded-xl font-bold font-mono text-xs"
                   >
                     Use This Copy in Project
                   </Button>
