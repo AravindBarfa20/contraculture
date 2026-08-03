@@ -10,12 +10,7 @@ import { AppLogo } from "@/components/shared/app-logo";
 import { LiveDemo } from "@/components/shared/live-demo";
 import { AnimatedCounter } from "@/components/shared/animated-counter";
 import { ScrollProgress } from "@/components/shared/scroll-progress";
-import { FloatingElements } from "@/components/shared/floating-elements";
-import { MagneticButton } from "@/components/shared/magnetic-button";
-import { TextReveal } from "@/components/shared/text-reveal";
 import { SectionReveal } from "@/components/shared/section-reveal";
-import { ProgressNav } from "@/components/shared/progress-nav";
-import { TestimonialCarousel } from "@/components/shared/testimonial-carousel";
 import { Marquee } from "@/components/shared/marquee";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { t } from "@/lib/i18n";
@@ -27,250 +22,297 @@ import {
   Sparkles,
   Zap,
   Terminal,
-  GitBranch,
+  Cpu,
+  ShieldCheck,
+  ChevronRight,
   Code,
-  ChevronDown,
+  Layers,
 } from "lucide-react";
 
 export default function HomePage() {
   const { locale, setLocale, mounted } = useLocale();
   const heroRef = useRef(null);
   const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 600], [0, 150]);
+  const heroY = useTransform(scrollY, [0, 600], [0, 100]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   if (!mounted) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <motion.div
-          className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-amber-500 flex items-center justify-center"
-          animate={{ rotate: [0, 180, 360], scale: [1, 0.8, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <span className="text-xl">🌍</span>
-        </motion.div>
+        <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center font-mono text-purple-400 text-xs animate-pulse">
+          CC
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-purple-500/20">
       <ScrollProgress />
-      <ProgressNav />
 
-      <header className="border-b glass sticky top-0 z-50">
+      {/* Top Navbar - Glass Blur */}
+      <header className="border-b border-border/60 bg-background/80 backdrop-blur-xl sticky top-0 z-50 transition-colors">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <AppLogo size="md" />
           <div className="flex gap-3 items-center">
             <LocaleSwitcher current={locale} onChange={setLocale} />
             <ThemeToggle />
             <Link href="/projects">
-              <Button variant="ghost" size="sm" className="font-medium">
-                Dashboard
+              <Button variant="ghost" size="sm" className="font-medium text-xs font-mono">
+                /dashboard
               </Button>
             </Link>
-            <MagneticButton>
-              <Link href="/projects/new">
-                <Button
-                  size="sm"
-                  className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white border-0 shadow-lg shadow-teal-500/25 font-medium"
-                >
-                  New Project
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              </Link>
-            </MagneticButton>
+            <Link href="/projects/new">
+              <Button
+                size="sm"
+                className="bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 dark:hover:bg-white text-zinc-100 dark:text-zinc-900 border border-zinc-700/50 dark:border-zinc-300 font-mono text-xs shadow-sm transition-all"
+              >
+                + new_project
+                <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-70" />
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
 
-      <main>
-        <section id="hero" ref={heroRef} className="relative min-h-[90vh] flex items-center justify-center">
-          <FloatingElements />
+      <main className="relative">
+        {/* Subtle Engineering Grid Background */}
+        <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60" />
 
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <motion.div
-              className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
-              style={{ background: "radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 70%)" }}
-              animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
-              style={{ background: "radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)" }}
-              animate={{ scale: [1.2, 1, 1.2], rotate: [0, -90, 0] }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
+        {/* Hero Section */}
+        <section id="hero" ref={heroRef} className="relative pt-20 pb-16 md:pt-28 md:pb-24">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-purple-500/10 via-indigo-500/10 to-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <motion.div
             style={{ y: heroY, opacity: heroOpacity }}
-            className="relative container mx-auto px-4 text-center"
+            className="relative container mx-auto px-4 text-center max-w-5xl"
           >
+            {/* Engineering Status Pill */}
             <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs font-mono mb-8 shadow-sm"
             >
-              <Badge
-                variant="outline"
-                className="mb-8 px-5 py-2 text-sm border-teal-500/30 text-teal-700 bg-teal-50/60 dark:bg-teal-950/40 backdrop-blur-sm font-semibold"
-              >
-                <Zap className="w-3.5 h-3.5 mr-2 text-amber-500" />
-                Built for the Lingo.dev Hackathon
-              </Badge>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+              <span className="font-semibold uppercase tracking-wider">ContraCulture Engine v2.0</span>
+              <span className="opacity-40">|</span>
+              <span className="opacity-80">Hofstede Cultural Adapter</span>
             </motion.div>
 
+            {/* Main Headline */}
             <motion.h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8 leading-[1.05] text-balance"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1] text-balance font-sans"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
             >
-              Your translated page
+              Translation preserves words.
               <br />
-              <span className="gradient-text">doesn&apos;t convert.</span>
+              <span className="bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 dark:from-purple-400 dark:via-indigo-300 dark:to-blue-400 bg-clip-text text-transparent">
+                Cultural adaptation preserves conversion.
+              </span>
             </motion.h1>
 
             <motion.p
-              className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed"
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
-              {t("app.description", locale)}
+              Stop losing international visitors to literal translations. ContraCulture rewrites your landing page copy using Hofstede framework psychology tailored for each market.
             </motion.p>
 
-            <motion.p
-              className="text-sm text-muted-foreground/80 max-w-lg mx-auto mb-12 leading-relaxed"
+            {/* Callout Stats Banner */}
+            <motion.div
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-zinc-900/5 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700/60 text-xs font-mono text-muted-foreground mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.4 }}
             >
-              &ldquo;Start your free trial&rdquo; converts at <strong className="text-foreground">12% in the US</strong> but only <strong className="text-red-500 font-bold">2% in Japan</strong>.
-              Because individualist framing fails in collectivist cultures.
-            </motion.p>
+              <span className="text-emerald-600 dark:text-emerald-400 font-bold">12% US conversion</span>
+              <span>→</span>
+              <span className="text-rose-500 font-bold">2% Japan (Literal)</span>
+              <span>vs</span>
+              <span className="text-purple-600 dark:text-purple-300 font-bold">14.7% Japan (Adapted)</span>
+            </motion.div>
 
+            {/* CTA Buttons */}
             <motion.div
               className="flex gap-4 justify-center flex-wrap"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.5 }}
             >
-              <MagneticButton>
-                <Link href="/projects/new">
-                  <Button
-                    size="lg"
-                    className="text-base px-10 h-14 bg-gradient-to-r from-teal-600 via-amber-600 to-rose-600 hover:from-teal-700 hover:via-amber-700 hover:to-rose-700 text-white border-0 shadow-2xl shadow-teal-500/30 rounded-2xl font-bold bg-[length:200%_auto] hover:bg-right transition-[background-position] duration-500"
-                  >
-                    Start Adapting Your Copy
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
-              </MagneticButton>
+              <Link href="/projects/new">
+                <Button
+                  size="lg"
+                  className="h-12 px-8 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-mono text-sm font-semibold shadow-lg shadow-purple-500/20 border border-purple-400/30 transition-all"
+                >
+                  <Terminal className="w-4 h-4 mr-2" />
+                  Start Cultural Adaptation
+                  <ArrowRight className="w-4 h-4 ml-2 opacity-80" />
+                </Button>
+              </Link>
 
-              <MagneticButton>
-                <a href="#demo">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-base px-10 h-14 rounded-2xl border-2 hover:border-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-950/30 font-semibold transition-all duration-300"
-                  >
-                    See It In Action
-                  </Button>
-                </a>
-              </MagneticButton>
+              <a href="#demo">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-12 px-8 rounded-xl border-border bg-card/80 backdrop-blur-sm text-sm font-mono font-medium hover:bg-accent transition-all"
+                >
+                  <Code className="w-4 h-4 mr-2 opacity-70" />
+                  View Interactive Demo
+                </Button>
+              </a>
             </motion.div>
+          </motion.div>
 
-            <motion.div className="mt-16" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
-              <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-                <ChevronDown className="w-6 h-6 text-muted-foreground/50 mx-auto" />
-              </motion.div>
-            </motion.div>
+          {/* Sentry-Style Terminal Code / Visual Frame Preview */}
+          <motion.div
+            className="container mx-auto px-4 mt-16 max-w-5xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+          >
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden text-left font-mono">
+              <div className="px-4 py-3 bg-zinc-900/90 border-b border-zinc-800 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-rose-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                  <span className="text-xs text-zinc-400 ml-2">contraculture-pipeline.ts</span>
+                </div>
+                <div className="text-[11px] text-zinc-500 flex items-center gap-3">
+                  <span className="text-emerald-400 font-semibold">● LIVE</span>
+                  <span>GROQ Llama3.3 70B</span>
+                </div>
+              </div>
+
+              <div className="p-6 text-xs text-zinc-300 leading-relaxed overflow-x-auto space-y-3">
+                <div className="text-zinc-500">// 1. Analyze persuasion pattern of original English string</div>
+                <div>
+                  <span className="text-purple-400">const</span> pattern = <span className="text-blue-400">analyzePersuasion</span>(<span className="text-emerald-300">&quot;Start your free trial today — boost productivity by 40%&quot;</span>);
+                </div>
+                <div className="text-zinc-400 pl-4">
+                  ➔ Pattern Classified: <span className="text-amber-400">&quot;individualist_achievement&quot;</span> <span className="text-zinc-500">(US Index: IDV 91, MAS 62)</span>
+                </div>
+
+                <div className="text-zinc-500 pt-2">// 2. Execute Hofstede transformation for Japan (IDV 46, UAI 92)</div>
+                <div>
+                  <span className="text-purple-400">const</span> adaptation = <span className="text-blue-400">adaptCopy</span>(pattern, &#123; targetLocale: <span className="text-emerald-300">&quot;ja&quot;</span> &#125;);
+                </div>
+                <div className="text-emerald-400 pl-4 font-sans font-medium text-sm pt-1">
+                  &ldquo;安心の無料トライアルをお試しください — チーム全体の効率化をサポート&rdquo;
+                </div>
+                <div className="text-zinc-500 pl-4 text-[11px]">
+                  Reasoning: Replaced individual urgency with peace-of-mind safety language (&quot;安心&quot;) and team harmony (&quot;チーム全体&quot;).
+                </div>
+              </div>
+            </div>
           </motion.div>
         </section>
 
+        {/* Marquee Ticker */}
         <Marquee />
 
+        {/* Metrics Grid */}
         <section className="container mx-auto px-4 py-16">
           <SectionReveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {[
-                { value: 6, suffix: "", label: "Languages Supported", icon: "🌐" },
-                { value: 47, suffix: "%", label: "Avg. Conversion Lift", icon: "📈" },
-                { value: 6, suffix: "", label: "Hofstede Dimensions", icon: "🧠" },
-                { value: 30, suffix: "s", label: "Time to Adapt", icon: "⚡" },
+                { value: 6, suffix: "", label: "Target Locales", sub: "JA, DE, PT-BR, FR, ES" },
+                { value: 47, suffix: "%", label: "Avg. Conversion Lift", sub: "Predicted A/B Win Rate" },
+                { value: 6, suffix: "", label: "Hofstede Dimensions", sub: "IDV, PDI, MAS, UAI, LTO, IND" },
+                { value: 30, suffix: "s", label: "Analysis Latency", sub: "Stateless AI Pipeline" },
               ].map((stat, i) => (
-                <motion.div key={i} className="text-center group" whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300 }}>
-                  <span className="text-2xl block mb-2 group-hover:scale-125 transition-transform duration-300">{stat.icon}</span>
-                  <p className="text-3xl md:text-4xl font-extrabold gradient-text">
+                <div key={i} className="p-5 rounded-xl border border-border/70 bg-card/60 backdrop-blur-sm">
+                  <p className="text-3xl font-extrabold font-mono tracking-tight text-foreground mb-1">
                     <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1 font-medium">{stat.label}</p>
-                </motion.div>
+                  <p className="text-xs font-semibold text-foreground">{stat.label}</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5 font-mono">{stat.sub}</p>
+                </div>
               ))}
             </div>
           </SectionReveal>
         </section>
 
-        <section id="demo" className="container mx-auto px-4 py-24">
+        {/* Interactive Demo Section */}
+        <section id="demo" className="container mx-auto px-4 py-20">
           <SectionReveal>
-            <div className="text-center mb-14">
-              <Badge variant="outline" className="mb-5 text-xs font-semibold tracking-wider border-amber-300 text-amber-700 bg-amber-50/60 dark:bg-amber-950/40">
-                ✨ LIVE PREVIEW
+            <div className="text-center mb-12">
+              <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/10">
+                INSPECTION_TOOL // LIVE_PREVIEW
               </Badge>
-              <h3 className="text-4xl font-extrabold mb-4">
-                <TextReveal>See Cultural Adaptation in Action</TextReveal>
-              </h3>
-              <p className="text-muted-foreground max-w-lg mx-auto">
-                Click a country below to see how the same English copy gets culturally rewritten
+              <h3 className="text-3xl font-extrabold tracking-tight mb-3">See Cultural Rewriting in Action</h3>
+              <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+                Compare literal word-for-word translation against Hofstede-driven persuasion copy
               </p>
             </div>
           </SectionReveal>
-          <SectionReveal delay={0.2}>
+          <SectionReveal delay={0.15}>
             <LiveDemo />
           </SectionReveal>
         </section>
 
-        <section id="how-it-works" className="relative py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-muted/0 via-muted/50 to-muted/0" />
-          <div className="container mx-auto px-4 relative">
+        {/* Workflow Architecture Section */}
+        <section id="how-it-works" className="py-20 border-t border-b border-border/50 bg-zinc-900/5 dark:bg-zinc-900/30">
+          <div className="container mx-auto px-4 max-w-5xl">
             <SectionReveal>
-              <div className="text-center mb-16">
-                <Badge variant="outline" className="mb-5 text-xs font-semibold tracking-wider border-teal-300 text-teal-700 bg-teal-50/60 dark:bg-teal-950/40">
-                  🔧 HOW IT WORKS
+              <div className="text-center mb-14">
+                <Badge variant="outline" className="mb-3 text-[11px] font-mono tracking-wider border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10">
+                  SYSTEM_PIPELINE // 3_STEPS
                 </Badge>
-                <h3 className="text-4xl font-extrabold mb-4">
-                  <TextReveal>Three Steps to Global Conversion</TextReveal>
-                </h3>
-                <p className="text-muted-foreground max-w-xl mx-auto">
-                  From English copy to culturally-optimized variants in under a minute
+                <h3 className="text-3xl font-extrabold tracking-tight mb-3">Engineered for High-Converting Growth</h3>
+                <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+                  From raw input to simulated market lift in seconds
                 </p>
               </div>
             </SectionReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { step: "01", icon: Sparkles, gradient: "from-teal-500 to-cyan-500", title: "1. Analyze", desc: "AI classifies persuasion patterns" },
-                { step: "02", icon: Globe, gradient: "from-amber-500 to-orange-500", title: "2. Adapt", desc: "Hofstede-driven cultural rewriting" },
-                { step: "03", icon: BarChart3, gradient: "from-rose-500 to-emerald-500", title: "3. Simulate", desc: "Predicted conversion rates" },
+                {
+                  step: "01",
+                  icon: Sparkles,
+                  title: "1. Classify Persuasion",
+                  desc: "AI identifies whether source copy uses individualist, authority, scarcity, or uncertainty-reduction framing.",
+                  tag: "NLP Classifier",
+                },
+                {
+                  step: "02",
+                  icon: Globe,
+                  title: "2. Cultural Rewriting",
+                  desc: "Rewrites strings according to target market scores across 6 Hofstede cultural dimensions.",
+                  tag: "Hofstede Model",
+                },
+                {
+                  step: "03",
+                  icon: BarChart3,
+                  title: "3. Conversion Simulation",
+                  desc: "Simulates A/B visitor behavior to estimate lift and declare statistical winning variants.",
+                  tag: "Bayesian Simulator",
+                },
               ].map((item, i) => {
                 const Icon = item.icon;
                 return (
-                  <SectionReveal key={i} delay={i * 0.15}>
-                    <div className="card-3d relative overflow-hidden rounded-2xl bg-card border-2 h-full p-8 group">
-                      <div className={`absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r ${item.gradient} opacity-80`} />
-                      <div className="flex items-start justify-between mb-5">
-                        <motion.div
-                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-xl`}
-                          whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                        >
-                          <Icon className="w-8 h-8 text-white" />
-                        </motion.div>
-                        <span className="text-5xl font-black text-muted-foreground/10">{item.step}</span>
+                  <SectionReveal key={i} delay={i * 0.1}>
+                    <div className="p-6 rounded-xl border border-border/70 bg-card backdrop-blur-sm h-full flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-10 h-10 rounded-lg bg-zinc-900 dark:bg-zinc-800 text-white flex items-center justify-center font-mono">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <span className="text-xs font-mono font-bold text-muted-foreground/60">{item.step}</span>
+                        </div>
+                        <h4 className="text-base font-bold mb-2">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                       </div>
-                      <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                      <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between">
+                        <span className="text-[10px] font-mono text-purple-600 dark:text-purple-400 font-semibold">{item.tag}</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/40" />
+                      </div>
                     </div>
                   </SectionReveal>
                 );
@@ -279,54 +321,28 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="testimonials" className="container mx-auto px-4 py-24">
+        {/* Footer CTA */}
+        <section className="container mx-auto px-4 py-20 text-center max-w-3xl">
           <SectionReveal>
-            <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4 border-rose-300 text-rose-700 bg-rose-50/60 dark:bg-rose-950/40 font-semibold">💬 TESTIMONIALS</Badge>
-              <h3 className="text-3xl font-bold mb-4">Trusted by Growth Teams</h3>
-            </div>
-          </SectionReveal>
-          <TestimonialCarousel />
-        </section>
-
-        <Marquee />
-
-        <section className="container mx-auto px-4 py-24">
-          <SectionReveal>
-            <div className="relative overflow-hidden rounded-3xl noise">
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-600 via-emerald-600 to-amber-500" />
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.2),transparent_50%)]" />
-              </div>
-              <div className="relative p-12 md:p-20 text-center text-white">
-                <motion.div
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="w-24 h-24 rounded-3xl bg-white/15 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 shadow-xl"
-                >
-                  <span className="text-6xl">🚀</span>
-                </motion.div>
-                <h3 className="text-4xl md:text-5xl font-extrabold mb-5">Ready to convert globally?</h3>
-                <p className="text-lg text-white/90 mb-8 max-w-xl mx-auto font-medium">Stop losing customers to literal translations</p>
-                <MagneticButton>
-                  <Link href="/projects/new">
-                    <Button size="lg" className="bg-white text-teal-800 hover:bg-teal-50 text-lg px-10 h-14 shadow-2xl rounded-2xl font-bold border-0">
-                      Get Started Free
-                    </Button>
-                  </Link>
-                </MagneticButton>
-              </div>
+            <div className="p-10 rounded-2xl border border-border bg-gradient-to-b from-card to-muted/50 backdrop-blur-sm">
+              <h3 className="text-3xl font-extrabold tracking-tight mb-3">Ready to optimize your global pages?</h3>
+              <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto">
+                No database setup required. Create projects, generate adaptations, and test shareable URL links immediately.
+              </p>
+              <Link href="/projects/new">
+                <Button size="lg" className="h-12 px-8 rounded-xl bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 dark:hover:bg-white text-zinc-100 dark:text-zinc-900 font-mono text-sm font-semibold shadow-xl">
+                  Launch New Project →
+                </Button>
+              </Link>
             </div>
           </SectionReveal>
         </section>
 
-        <footer className="border-t py-10">
-          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Footer */}
+        <footer className="border-t border-border/50 py-8">
+          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
             <AppLogo size="sm" clickable={false} />
-            <p className="text-sm text-muted-foreground font-medium">
-              Built for Lingo.dev Hackathon · Powered by Lingo.dev
-            </p>
+            <p>Built for Lingo.dev Hackathon · Powered by Lingo.dev & Groq AI</p>
           </div>
         </footer>
       </main>

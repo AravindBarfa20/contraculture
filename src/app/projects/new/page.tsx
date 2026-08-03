@@ -160,28 +160,28 @@ export default function NewProjectPage() {
           </div>
 
           <MouseSpotlight className="rounded-2xl mb-8">
-            <Card className="border-2 overflow-hidden bg-card/90 backdrop-blur-sm">
-              <CardHeader className="pb-2">
+            <Card className="border border-border/80 overflow-hidden bg-card shadow-sm rounded-xl">
+              <CardHeader className="pb-3 border-b border-border/50 bg-muted/30">
                 <div className="flex items-center gap-2">
-                  <Wand2 className="w-5 h-5 text-teal-600" />
-                  <CardTitle className="text-base">Quick Start Templates</CardTitle>
+                  <Wand2 className="w-4 h-4 text-purple-500" />
+                  <CardTitle className="text-sm font-bold font-mono">PRESET_TEMPLATES</CardTitle>
                 </div>
-                <CardDescription className="text-xs">Or pick a template to pre-fill copy strings</CardDescription>
+                <CardDescription className="text-xs">Quick start with pre-configured SaaS copy strings</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-4">
                 <div className="flex gap-3 flex-wrap">
                   {TEMPLATES.map((template, i) => (
                     <motion.button
                       key={i}
                       type="button"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => applyTemplate(i)}
-                      className={`flex items-center gap-2 px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-teal-500 bg-teal-50 text-teal-800 dark:bg-teal-950/50 dark:text-teal-200 shadow-md" : "border-border hover:border-teal-300 hover:bg-teal-50/30"}`}
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-purple-500/80 bg-purple-500/10 text-purple-600 dark:text-purple-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
                     >
-                      <span className="text-lg">{template.emoji}</span>
+                      <span className="text-base">{template.emoji}</span>
                       <span>{template.name}</span>
-                      {selectedTemplate === i && <CheckCircle className="w-4 h-4 text-teal-600" />}
+                      {selectedTemplate === i && <CheckCircle className="w-3.5 h-3.5 text-purple-500" />}
                     </motion.button>
                   ))}
                 </div>
@@ -189,50 +189,46 @@ export default function NewProjectPage() {
             </Card>
           </MouseSpotlight>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <MouseSpotlight className="rounded-2xl">
-              <Card className="border-2 bg-card/90 backdrop-blur-sm">
-                <CardHeader><CardTitle className="text-lg">Project Details</CardTitle></CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Project Name</Label>
-                    <Input id="name" placeholder="My SaaS Landing Page" value={name} onChange={(e) => setName(e.target.value)} className="h-11" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="description">Description</Label>
-                    <Textarea id="description" placeholder="Landing page for our project management tool" value={description} onChange={(e) => setDescription(e.target.value)} rows={2} />
-                  </div>
-                </CardContent>
-              </Card>
-            </MouseSpotlight>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <Card className="border border-border/80 bg-card rounded-xl shadow-sm">
+              <CardHeader className="pb-3 border-b border-border/50 bg-muted/30"><CardTitle className="text-sm font-bold font-mono">PROJECT_METADATA</CardTitle></CardHeader>
+              <CardContent className="space-y-4 pt-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="name" className="text-xs font-mono">PROJECT_NAME *</Label>
+                  <Input id="name" placeholder="e.g., Global SaaS Landing Page" value={name} onChange={(e) => setName(e.target.value)} className="h-10 text-sm font-sans" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="description" className="text-xs font-mono">DESCRIPTION</Label>
+                  <Textarea id="description" placeholder="Brief description of the product or campaign target..." value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className="text-sm font-sans resize-none" />
+                </div>
+              </CardContent>
+            </Card>
 
-            <MouseSpotlight className="rounded-2xl">
-              <Card className="border-2 bg-card/90 backdrop-blur-sm">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">Target Markets</CardTitle>
-                    <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs text-teal-700 font-semibold">Select All</Button>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-3">
-                    {SUPPORTED_LOCALES.map((locale) => {
-                      const isSelected = targetLocales.includes(locale.code);
-                      return (
-                        <motion.button key={locale.code} type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                          onClick={() => toggleLocale(locale.code)}
-                          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${isSelected ? "border-amber-500 bg-amber-50 text-amber-800 dark:bg-amber-950/50 dark:text-amber-200 shadow-sm" : "border-border hover:border-amber-300 hover:bg-amber-50/30"}`}
-                        >
-                          <span className="text-xl">{locale.flag}</span>
-                          <span>{locale.country}</span>
-                          {isSelected && <CheckCircle className="w-4 h-4 text-amber-600" />}
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            </MouseSpotlight>
+            <Card className="border border-border/80 bg-card rounded-xl shadow-sm">
+              <CardHeader className="pb-3 border-b border-border/50 bg-muted/30">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-sm font-bold font-mono">TARGET_MARKETS</CardTitle>
+                  <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs font-mono text-purple-600 dark:text-purple-400 h-7">select_all</Button>
+                </div>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <div className="flex flex-wrap gap-2.5">
+                  {SUPPORTED_LOCALES.map((locale) => {
+                    const isSelected = targetLocales.includes(locale.code);
+                    return (
+                      <motion.button key={locale.code} type="button" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                        onClick={() => toggleLocale(locale.code)}
+                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border text-xs font-mono font-medium transition-all cursor-pointer ${isSelected ? "border-purple-500/60 bg-purple-500/10 text-purple-600 dark:text-purple-300 font-bold shadow-sm" : "border-border/80 bg-card hover:bg-accent"}`}
+                      >
+                        <span className="text-base">{locale.flag}</span>
+                        <span>{locale.country}</span>
+                        {isSelected && <CheckCircle className="w-3.5 h-3.5 text-purple-500" />}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
 
             <MouseSpotlight className="rounded-2xl">
               <Card className="border-2 bg-card/90 backdrop-blur-sm">
