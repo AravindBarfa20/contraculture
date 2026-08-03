@@ -4,14 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Sparkles, CheckCircle2, Sliders, Shield, Users, Layers } from "lucide-react";
-
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Sparkles, Sliders } from "lucide-react";
 
 const DEMO_ITEMS = [
