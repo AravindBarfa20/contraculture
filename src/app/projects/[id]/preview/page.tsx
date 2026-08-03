@@ -45,7 +45,7 @@ function PreviewLanding({ strings, locale }: { strings: CopyString[]; locale: st
         <div className="flex gap-3">
           <span className="text-xs text-gray-500 py-1.5 px-3">Features</span>
           <span className="text-xs text-gray-500 py-1.5 px-3">Pricing</span>
-          <div className="text-xs bg-indigo-600 text-white py-1.5 px-4 rounded-lg font-medium">
+          <div className="text-xs bg-teal-600 text-white py-1.5 px-4 rounded-lg font-medium">
             {cta ? cta.slice(0, 20) : "Get Started"}
           </div>
         </div>
@@ -77,7 +77,7 @@ function PreviewLanding({ strings, locale }: { strings: CopyString[]; locale: st
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-xl text-sm font-semibold shadow-lg shadow-indigo-500/25 hover:shadow-xl transition-shadow">
+          <button className="bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-3 rounded-xl text-sm font-semibold shadow-lg shadow-teal-500/25 hover:shadow-xl transition-shadow">
             {cta || "Get Started"}
           </button>
         </motion.div>
@@ -192,7 +192,7 @@ export default function PreviewPage({ params }: { params: Promise<{ id: string }
       <main className="relative container mx-auto px-4 py-8 max-w-6xl">
         <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
           <div>
-            <Badge variant="outline" className="mb-2 text-xs font-semibold tracking-wider border-indigo-300 text-indigo-600 bg-indigo-50/50">
+            <Badge variant="outline" className="mb-2 text-xs font-semibold tracking-wider border-teal-300 text-teal-700 bg-teal-50/60 dark:bg-teal-950/40">
               <ExternalLink className="w-3 h-3 mr-1.5" />
               LIVE PREVIEW
             </Badge>
@@ -203,13 +203,13 @@ export default function PreviewPage({ params }: { params: Promise<{ id: string }
             <div className="flex border-2 rounded-xl overflow-hidden">
               <button
                 onClick={() => setDevice("desktop")}
-                className={`px-3 py-2 text-xs font-medium transition-colors ${device === "desktop" ? "bg-indigo-50 text-indigo-700" : "text-muted-foreground hover:bg-muted"}`}
+                className={`px-3 py-2 text-xs font-semibold transition-colors ${device === "desktop" ? "bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-200" : "text-muted-foreground hover:bg-muted"}`}
               >
                 <Monitor className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setDevice("mobile")}
-                className={`px-3 py-2 text-xs font-medium transition-colors ${device === "mobile" ? "bg-indigo-50 text-indigo-700" : "text-muted-foreground hover:bg-muted"}`}
+                className={`px-3 py-2 text-xs font-semibold transition-colors ${device === "mobile" ? "bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-200" : "text-muted-foreground hover:bg-muted"}`}
               >
                 <Smartphone className="w-4 h-4" />
               </button>
@@ -227,8 +227,8 @@ export default function PreviewPage({ params }: { params: Promise<{ id: string }
               className={`
                 flex items-center gap-2 px-4 py-2 rounded-xl border-2 text-sm font-semibold transition-all cursor-pointer
                 ${locale === activeLocale
-                  ? "border-indigo-500 bg-indigo-50 text-indigo-700 shadow-md shadow-indigo-500/10"
-                  : "border-border hover:border-indigo-300 hover:bg-indigo-50/30"
+                  ? "border-teal-500 bg-teal-50 text-teal-800 dark:bg-teal-950 dark:text-teal-200 shadow-md shadow-teal-500/10"
+                  : "border-border hover:border-teal-300 hover:bg-teal-50/30"
                 }
               `}
             >

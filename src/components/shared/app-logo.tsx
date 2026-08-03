@@ -20,7 +20,7 @@ export function AppLogo({ size = "md", clickable = true }: AppLogoProps) {
   const content = (
     <div className="flex items-center gap-2.5">
       <motion.div
-        className={`relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-blue-500/20`}
+        className={`relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 via-emerald-500 to-amber-500 shadow-lg shadow-teal-500/20`}
         whileHover={clickable ? { rotate: [0, -10, 10, 0], scale: 1.1 } : {}}
         transition={{ duration: 0.5 }}
       >

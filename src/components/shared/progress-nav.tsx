@@ -51,14 +51,14 @@ export function ProgressNav() {
           <motion.div
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               activeSection === id
-                ? "bg-indigo-500 scale-125"
+                ? "bg-teal-600 scale-125"
                 : "bg-gray-300 group-hover:bg-gray-400"
             }`}
           />
           <span
             className={`text-xs font-medium transition-all duration-300 ${
               activeSection === id
-                ? "text-indigo-600 opacity-100"
+                ? "text-teal-700 opacity-100"
                 : "text-gray-400 opacity-0 group-hover:opacity-100"
             }`}
           >

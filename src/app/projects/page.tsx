@@ -23,10 +23,10 @@ import { useLocale } from "@/hooks/use-locale";
 import type { Project } from "@/types";
 
 const statusConfig: Record<string, { color: string; bg: string; label: string }> = {
-  draft: { color: "text-gray-600", bg: "bg-gray-100 border-gray-200", label: "Draft" },
-  analyzed: { color: "text-blue-600", bg: "bg-blue-50 border-blue-200", label: "Analyzed" },
-  adapted: { color: "text-green-600", bg: "bg-green-50 border-green-200", label: "Adapted" },
-  simulated: { color: "text-purple-600", bg: "bg-purple-50 border-purple-200", label: "Simulated" },
+  draft: { color: "text-slate-600", bg: "bg-slate-100 border-slate-200 dark:bg-slate-800 dark:text-slate-300", label: "Draft" },
+  analyzed: { color: "text-teal-700", bg: "bg-teal-50 border-teal-200 dark:bg-teal-950 dark:text-teal-300", label: "Analyzed" },
+  adapted: { color: "text-amber-700", bg: "bg-amber-50 border-amber-200 dark:bg-amber-950 dark:text-amber-300", label: "Adapted" },
+  simulated: { color: "text-emerald-700", bg: "bg-emerald-50 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300", label: "Simulated" },
 };
 
 export default function ProjectsPage() {
@@ -64,7 +64,7 @@ export default function ProjectsPage() {
             <h2 className="text-3xl font-bold">{t("projects.title", locale)}</h2>
             <p className="text-muted-foreground mt-1">{t("projects.subtitle", locale)}</p>
           </div>
-          <Button onClick={() => router.push("/projects/new")} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-md">
+          <Button onClick={() => router.push("/projects/new")} className="bg-gradient-to-r from-teal-600 via-emerald-600 to-amber-500 hover:from-teal-700 hover:to-amber-600 text-white border-0 shadow-md font-semibold">
             <Plus className="w-4 h-4 mr-2" />{t("projects.new", locale)}
           </Button>
         </motion.div>
@@ -80,12 +80,12 @@ export default function ProjectsPage() {
             <MouseSpotlight className="rounded-2xl">
               <Card className="text-center py-16 border-2 border-dashed bg-card/80 backdrop-blur-sm">
                 <CardContent>
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mx-auto mb-6">
-                    <Globe className="w-10 h-10 text-muted-foreground" />
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500/10 to-amber-500/10 flex items-center justify-center mx-auto mb-6">
+                    <Globe className="w-10 h-10 text-teal-600" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{t("projects.empty", locale)}</h3>
                   <p className="text-muted-foreground mb-6 max-w-sm mx-auto">{t("projects.emptyDesc", locale)}</p>
-                  <Button onClick={() => router.push("/projects/new")} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0">
+                  <Button onClick={() => router.push("/projects/new")} className="bg-gradient-to-r from-teal-600 to-amber-500 hover:from-teal-700 hover:to-amber-600 text-white border-0 font-semibold">
                     <Plus className="w-4 h-4 mr-2" />{t("projects.new", locale)}
                   </Button>
                 </CardContent>
@@ -100,11 +100,11 @@ export default function ProjectsPage() {
                 <motion.div key={project.id} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.08 }}>
                   <TiltCard maxTilt={10}>
                     <MouseSpotlight className="rounded-2xl">
-                      <Card className="cursor-pointer group transition-all duration-300 border-2 hover:border-blue-500/20 h-full bg-card/90 backdrop-blur-sm" onClick={() => router.push(`/projects/${project.id}`)}>
+                      <Card className="cursor-pointer group transition-all duration-300 border-2 hover:border-teal-500/30 h-full bg-card/90 backdrop-blur-sm" onClick={() => router.push(`/projects/${project.id}`)}>
                         <CardHeader className="pb-3">
                           <div className="flex items-center justify-between">
-                            <CardTitle className="text-lg group-hover:text-blue-600 transition-colors">{project.name}</CardTitle>
-                            <Badge variant="outline" className={`${status.bg} ${status.color} border text-xs`}>{status.label}</Badge>
+                            <CardTitle className="text-lg group-hover:text-teal-600 transition-colors">{project.name}</CardTitle>
+                            <Badge variant="outline" className={`${status.bg} ${status.color} border text-xs font-semibold`}>{status.label}</Badge>
                           </div>
                           <CardDescription className="line-clamp-2">{project.description}</CardDescription>
                         </CardHeader>
@@ -113,7 +113,7 @@ export default function ProjectsPage() {
                             <div className="flex gap-1.5">
                               {project.target_locales.map((l) => (<span key={l} className="text-lg" title={l}>{getFlag(l)}</span>))}
                             </div>
-                            <div className="flex items-center text-sm text-muted-foreground group-hover:text-blue-600 transition-colors">
+                            <div className="flex items-center text-sm text-muted-foreground group-hover:text-teal-600 transition-colors font-medium">
                               {project._count.copy_strings} strings
                               <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                             </div>

@@ -43,7 +43,7 @@ export default function HomePage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <motion.div
-          className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center"
+          className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-amber-500 flex items-center justify-center"
           animate={{ rotate: [0, 180, 360], scale: [1, 0.8, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -73,7 +73,7 @@ export default function HomePage() {
               <Link href="/projects/new">
                 <Button
                   size="sm"
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white border-0 shadow-lg shadow-indigo-500/25 font-medium"
+                  className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white border-0 shadow-lg shadow-teal-500/25 font-medium"
                 >
                   New Project
                   <ArrowRight className="w-4 h-4 ml-1" />
@@ -91,13 +91,13 @@ export default function HomePage() {
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <motion.div
               className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
-              style={{ background: "radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)" }}
+              style={{ background: "radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 70%)" }}
               animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             />
             <motion.div
               className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
-              style={{ background: "radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)" }}
+              style={{ background: "radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)" }}
               animate={{ scale: [1.2, 1, 1.2], rotate: [0, -90, 0] }}
               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
             />
@@ -114,9 +114,9 @@ export default function HomePage() {
             >
               <Badge
                 variant="outline"
-                className="mb-8 px-5 py-2 text-sm border-indigo-500/30 text-indigo-600 bg-indigo-50/50 backdrop-blur-sm"
+                className="mb-8 px-5 py-2 text-sm border-teal-500/30 text-teal-700 bg-teal-50/60 dark:bg-teal-950/40 backdrop-blur-sm font-semibold"
               >
-                <Zap className="w-3.5 h-3.5 mr-2" />
+                <Zap className="w-3.5 h-3.5 mr-2 text-amber-500" />
                 Built for the Lingo.dev Hackathon
               </Badge>
             </motion.div>
@@ -147,7 +147,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              &ldquo;Start your free trial&rdquo; converts at <strong className="text-foreground">12% in the US</strong> but only <strong className="text-red-500">2% in Japan</strong>.
+              &ldquo;Start your free trial&rdquo; converts at <strong className="text-foreground">12% in the US</strong> but only <strong className="text-red-500 font-bold">2% in Japan</strong>.
               Because individualist framing fails in collectivist cultures.
             </motion.p>
 
@@ -161,7 +161,7 @@ export default function HomePage() {
                 <Link href="/projects/new">
                   <Button
                     size="lg"
-                    className="text-base px-10 h-14 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:from-indigo-700 hover:via-purple-700 hover:to-indigo-700 text-white border-0 shadow-2xl shadow-indigo-500/30 rounded-2xl font-semibold bg-[length:200%_auto] hover:bg-right transition-[background-position] duration-500"
+                    className="text-base px-10 h-14 bg-gradient-to-r from-teal-600 via-amber-600 to-rose-600 hover:from-teal-700 hover:via-amber-700 hover:to-rose-700 text-white border-0 shadow-2xl shadow-teal-500/30 rounded-2xl font-bold bg-[length:200%_auto] hover:bg-right transition-[background-position] duration-500"
                   >
                     Start Adapting Your Copy
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -174,7 +174,7 @@ export default function HomePage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="text-base px-10 h-14 rounded-2xl border-2 hover:border-indigo-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/30 font-semibold transition-all duration-300"
+                    className="text-base px-10 h-14 rounded-2xl border-2 hover:border-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-950/30 font-semibold transition-all duration-300"
                   >
                     See It In Action
                   </Button>
@@ -216,7 +216,7 @@ export default function HomePage() {
         <section id="demo" className="container mx-auto px-4 py-24">
           <SectionReveal>
             <div className="text-center mb-14">
-              <Badge variant="outline" className="mb-5 text-xs font-semibold tracking-wider border-purple-300 text-purple-600 bg-purple-50/50">
+              <Badge variant="outline" className="mb-5 text-xs font-semibold tracking-wider border-amber-300 text-amber-700 bg-amber-50/60 dark:bg-amber-950/40">
                 ✨ LIVE PREVIEW
               </Badge>
               <h3 className="text-4xl font-extrabold mb-4">
@@ -237,7 +237,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4 relative">
             <SectionReveal>
               <div className="text-center mb-16">
-                <Badge variant="outline" className="mb-5 text-xs font-semibold tracking-wider border-blue-300 text-blue-600 bg-blue-50/50">
+                <Badge variant="outline" className="mb-5 text-xs font-semibold tracking-wider border-teal-300 text-teal-700 bg-teal-50/60 dark:bg-teal-950/40">
                   🔧 HOW IT WORKS
                 </Badge>
                 <h3 className="text-4xl font-extrabold mb-4">
@@ -251,9 +251,9 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
-                { step: "01", icon: Sparkles, gradient: "from-blue-500 to-cyan-500", title: "1. Analyze", desc: "AI classifies persuasion patterns" },
-                { step: "02", icon: Globe, gradient: "from-purple-500 to-pink-500", title: "2. Adapt", desc: "Hofstede-driven cultural rewriting" },
-                { step: "03", icon: BarChart3, gradient: "from-green-500 to-emerald-500", title: "3. Simulate", desc: "Predicted conversion rates" },
+                { step: "01", icon: Sparkles, gradient: "from-teal-500 to-cyan-500", title: "1. Analyze", desc: "AI classifies persuasion patterns" },
+                { step: "02", icon: Globe, gradient: "from-amber-500 to-orange-500", title: "2. Adapt", desc: "Hofstede-driven cultural rewriting" },
+                { step: "03", icon: BarChart3, gradient: "from-rose-500 to-emerald-500", title: "3. Simulate", desc: "Predicted conversion rates" },
               ].map((item, i) => {
                 const Icon = item.icon;
                 return (
@@ -282,7 +282,7 @@ export default function HomePage() {
         <section id="testimonials" className="container mx-auto px-4 py-24">
           <SectionReveal>
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">💬 TESTIMONIALS</Badge>
+              <Badge variant="outline" className="mb-4 border-rose-300 text-rose-700 bg-rose-50/60 dark:bg-rose-950/40 font-semibold">💬 TESTIMONIALS</Badge>
               <h3 className="text-3xl font-bold mb-4">Trusted by Growth Teams</h3>
             </div>
           </SectionReveal>
@@ -294,24 +294,24 @@ export default function HomePage() {
         <section className="container mx-auto px-4 py-24">
           <SectionReveal>
             <div className="relative overflow-hidden rounded-3xl noise">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-600 via-emerald-600 to-amber-500" />
               <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.15),transparent_50%)]" />
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.2),transparent_50%)]" />
               </div>
               <div className="relative p-12 md:p-20 text-center text-white">
                 <motion.div
                   initial={{ scale: 0.5, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  className="w-24 h-24 rounded-3xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-8"
+                  className="w-24 h-24 rounded-3xl bg-white/15 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 shadow-xl"
                 >
                   <span className="text-6xl">🚀</span>
                 </motion.div>
                 <h3 className="text-4xl md:text-5xl font-extrabold mb-5">Ready to convert globally?</h3>
-                <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto">Stop losing customers to literal translations</p>
+                <p className="text-lg text-white/90 mb-8 max-w-xl mx-auto font-medium">Stop losing customers to literal translations</p>
                 <MagneticButton>
                   <Link href="/projects/new">
-                    <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-50 text-lg px-10 h-14 shadow-2xl rounded-2xl font-bold">
+                    <Button size="lg" className="bg-white text-teal-800 hover:bg-teal-50 text-lg px-10 h-14 shadow-2xl rounded-2xl font-bold border-0">
                       Get Started Free
                     </Button>
                   </Link>
@@ -324,7 +324,7 @@ export default function HomePage() {
         <footer className="border-t py-10">
           <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <AppLogo size="sm" clickable={false} />
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground font-medium">
               Built for Lingo.dev Hackathon · Powered by Lingo.dev
             </p>
           </div>

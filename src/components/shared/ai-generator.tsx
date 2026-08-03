@@ -60,11 +60,11 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
   };
 
   return (
-    <Card className="border-2 border-dashed border-purple-300 bg-gradient-to-br from-purple-50/50 to-indigo-50/50 dark:from-purple-950/20 dark:to-indigo-950/20 overflow-hidden">
+    <Card className="border-2 border-dashed border-teal-300 bg-gradient-to-br from-teal-50/50 to-amber-50/50 dark:from-teal-950/20 dark:to-amber-950/20 overflow-hidden">
       <CardHeader className="pb-2 cursor-pointer" onClick={() => setExpanded(!expanded)}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-amber-500 flex items-center justify-center shadow-lg">
               <Wand2 className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -72,7 +72,7 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
               <CardDescription className="text-xs">Describe your product and AI writes the copy</CardDescription>
             </div>
           </div>
-          <Badge variant="outline" className="border-purple-300 text-purple-600 bg-purple-50">
+          <Badge variant="outline" className="border-teal-300 text-teal-700 bg-teal-50 font-semibold">
             {expanded ? "Collapse" : "Try it"}
           </Badge>
         </div>
@@ -122,7 +122,7 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
               <Button
                 onClick={handleGenerate}
                 disabled={generating || !description.trim()}
-                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white border-0 rounded-xl"
+                className="w-full bg-gradient-to-r from-teal-600 via-amber-600 to-rose-600 hover:from-teal-700 hover:to-rose-700 text-white border-0 rounded-xl font-semibold shadow-md"
               >
                 {generating ? (
                   <motion.div
@@ -161,7 +161,7 @@ export function AIGenerator({ onGenerated }: AIGeneratorProps) {
 
                   <Button
                     onClick={handleUse}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white border-0 rounded-xl"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white border-0 rounded-xl font-semibold"
                   >
                     Use This Copy in Project
                   </Button>

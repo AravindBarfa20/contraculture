@@ -86,7 +86,7 @@ export default function AdaptationsPage({ params }: { params: Promise<{ id: stri
         <SectionReveal>
           <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
             <div>
-              <Badge variant="outline" className="mb-3 text-xs font-semibold tracking-wider border-purple-300 text-purple-600 bg-purple-50/50">
+              <Badge variant="outline" className="mb-3 text-xs font-semibold tracking-wider border-teal-300 text-teal-700 bg-teal-50/60 dark:bg-teal-950/40">
                 <Globe className="w-3 h-3 mr-1.5" />
                 CULTURAL ADAPTATIONS
               </Badge>
@@ -110,8 +110,8 @@ export default function AdaptationsPage({ params }: { params: Promise<{ id: stri
                 className={`
                   flex items-center gap-2 px-5 py-3 rounded-xl border-2 text-sm font-semibold transition-all cursor-pointer
                   ${locale === activeLocale
-                    ? "border-indigo-500 bg-indigo-50 text-indigo-700 shadow-md shadow-indigo-500/10"
-                    : "border-border hover:border-indigo-300 hover:bg-indigo-50/30"
+                    ? "border-teal-500 bg-teal-50 text-teal-800 dark:bg-teal-950 dark:text-teal-200 shadow-md shadow-teal-500/10"
+                    : "border-border hover:border-teal-300 hover:bg-teal-50/30"
                   }
                 `}
               >
@@ -170,8 +170,8 @@ export default function AdaptationsPage({ params }: { params: Promise<{ id: stri
                                       className={`text-xs px-1.5 py-0 ${
                                         isSignificant
                                           ? diff > 0
-                                            ? "border-red-300 text-red-600 bg-red-50"
-                                            : "border-blue-300 text-blue-600 bg-blue-50"
+                                            ? "border-amber-300 text-amber-600 bg-amber-50"
+                                            : "border-teal-300 text-teal-600 bg-teal-50"
                                           : "border-gray-200 text-gray-500"
                                       }`}
                                     >
@@ -181,7 +181,7 @@ export default function AdaptationsPage({ params }: { params: Promise<{ id: stri
                                 </div>
                                 <div className="w-full bg-muted rounded-full h-2">
                                   <motion.div
-                                    className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                                    className="h-2 rounded-full bg-gradient-to-r from-teal-500 via-amber-500 to-rose-500"
                                     initial={{ width: 0 }}
                                     animate={{ width: `${percentage}%` }}
                                     transition={{ duration: 0.8, delay: 0.3 }}

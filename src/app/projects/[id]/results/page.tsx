@@ -118,9 +118,9 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
         <SectionReveal delay={0.08}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
             {[
-              { icon: TrendingUp, value: Math.round(overallLift), suffix: "%", label: "Average Lift", color: "from-green-400 to-emerald-500", bg: "bg-green-100", text: "text-green-600" },
-              { icon: Users, value: totalVisitors, suffix: "", label: "Simulated Visitors", color: "from-blue-400 to-indigo-500", bg: "bg-blue-100", text: "text-blue-600" },
-              { icon: Trophy, value: locales.length, suffix: "", label: "Markets Tested", color: "from-purple-400 to-pink-500", bg: "bg-purple-100", text: "text-purple-600" },
+              { icon: TrendingUp, value: Math.round(overallLift), suffix: "%", label: "Average Lift", color: "from-emerald-400 to-teal-500", bg: "bg-emerald-100 dark:bg-emerald-950", text: "text-emerald-600 dark:text-emerald-300" },
+              { icon: Users, value: totalVisitors, suffix: "", label: "Simulated Visitors", color: "from-teal-400 to-cyan-500", bg: "bg-teal-100 dark:bg-teal-950", text: "text-teal-600 dark:text-teal-300" },
+              { icon: Trophy, value: locales.length, suffix: "", label: "Markets Tested", color: "from-amber-400 to-orange-500", bg: "bg-amber-100 dark:bg-amber-950", text: "text-amber-600 dark:text-amber-300" },
             ].map((item, index) => {
               const Icon = item.icon;
               return (
@@ -178,7 +178,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
                     <XAxis dataKey="locale" tick={{ fontSize: 12, fill: "#6b7280" }} tickLine={false} />
                     <YAxis unit="%" tick={{ fontSize: 12, fill: "#6b7280" }} axisLine={false} tickLine={false} />
-                    <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(99,102,241,0.04)" }} />
+                    <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(13,148,136,0.04)" }} />
                     <Legend iconType="circle" iconSize={10} />
                     <Bar dataKey="Literal Translation" fill="#cbd5e1" radius={[8, 8, 0, 0]} />
                     <Bar dataKey="Culturally Adapted" radius={[8, 8, 0, 0]}>
@@ -186,8 +186,8 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                     </Bar>
                     <defs>
                       <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#22c55e" />
-                        <stop offset="100%" stopColor="#16a34a" />
+                        <stop offset="0%" stopColor="#10b981" />
+                        <stop offset="100%" stopColor="#059669" />
                       </linearGradient>
                     </defs>
                   </BarChart>
@@ -213,7 +213,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                 <TiltCard maxTilt={6}>
                   <MouseSpotlight className="rounded-2xl">
                     <Card
-                      className={`border-2 overflow-hidden transition-all duration-300 bg-card/90 backdrop-blur-sm ${hoveredLocale === locale ? "shadow-xl border-indigo-200" : "hover:shadow-lg"}`}
+                      className={`border-2 overflow-hidden transition-all duration-300 bg-card/90 backdrop-blur-sm ${hoveredLocale === locale ? "shadow-xl border-teal-200" : "hover:shadow-lg"}`}
                       onMouseEnter={() => setHoveredLocale(locale)}
                       onMouseLeave={() => setHoveredLocale(null)}
                     >
@@ -224,7 +224,7 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                             <span className="text-xl">{getCountryName(locale)}</span>
                           </CardTitle>
                           {lift > 0 && (
-                            <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 text-sm px-4 py-1.5 shadow-lg shadow-green-500/20">
+                            <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-0 text-sm px-4 py-1.5 shadow-lg shadow-emerald-500/20">
                               <Trophy className="w-3.5 h-3.5 mr-1.5" />
                               +{lift.toFixed(1)}% lift
                             </Badge>
@@ -242,21 +242,21 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
                               <motion.div className="h-2.5 rounded-full bg-gray-400" initial={{ width: 0 }} animate={{ width: `${Math.min((literal?.conversion_rate || 0) * 100 * 4, 100)}%` }} transition={{ duration: 1, delay: 0.25 + index * 0.08 }} />
                             </div>
                           </div>
-                          <div className="rounded-2xl border-2 border-green-200 bg-gradient-to-br from-green-50/80 to-emerald-50/50 p-6 relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-500" />
+                          <div className="rounded-2xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50/80 to-teal-50/50 dark:from-emerald-950/40 dark:to-teal-950/30 p-6 relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-teal-500" />
                             <div className="flex items-center gap-2 mb-1">
                               <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">Culturally Adapted</p>
-                              {adapted?.is_winner && <Trophy className="w-4 h-4 text-green-600" />}
+                              {adapted?.is_winner && <Trophy className="w-4 h-4 text-emerald-600" />}
                             </div>
-                            <p className="text-4xl font-extrabold text-green-600 mt-2">{adapted ? formatPercent(adapted.conversion_rate) : "N/A"}</p>
+                            <p className="text-4xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2">{adapted ? formatPercent(adapted.conversion_rate) : "N/A"}</p>
                             <p className="text-xs text-muted-foreground mt-2">{adapted?.simulated_conversions.toLocaleString()} / {adapted?.simulated_visitors.toLocaleString()}</p>
-                            <div className="mt-4 w-full bg-green-100 rounded-full h-2.5 overflow-hidden">
-                              <motion.div className="h-2.5 rounded-full bg-gradient-to-r from-green-400 to-emerald-500" initial={{ width: 0 }} animate={{ width: `${Math.min((adapted?.conversion_rate || 0) * 100 * 4, 100)}%` }} transition={{ duration: 1, delay: 0.4 + index * 0.08 }} />
+                            <div className="mt-4 w-full bg-emerald-100 rounded-full h-2.5 overflow-hidden">
+                              <motion.div className="h-2.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500" initial={{ width: 0 }} animate={{ width: `${Math.min((adapted?.conversion_rate || 0) * 100 * 4, 100)}%` }} transition={{ duration: 1, delay: 0.4 + index * 0.08 }} />
                             </div>
                           </div>
                         </div>
                         {adapted?.insight && (
-                          <div className="rounded-xl p-5 border bg-gradient-to-r from-indigo-50/30 to-purple-50/30">
+                          <div className="rounded-xl p-5 border bg-gradient-to-r from-teal-50/40 to-amber-50/40 dark:from-teal-950/40 dark:to-amber-950/40">
                             <p className="text-sm leading-relaxed"><span className="font-bold text-foreground">💡 Insight: </span>{adapted.insight}</p>
                           </div>
                         )}
@@ -279,17 +279,17 @@ export default function ResultsPage({ params }: { params: Promise<{ id: string }
           <div className="mt-10">
             <MouseSpotlight className="rounded-2xl">
               <Card className="border-2 overflow-hidden bg-card/90 backdrop-blur-sm">
-                <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 text-center text-white relative">
+                <div className="bg-gradient-to-r from-teal-600 via-emerald-600 to-amber-500 p-8 text-center text-white relative">
                   <div className="relative">
                     <p className="text-lg font-bold mb-1">
                       Cultural adaptation delivers a <span className="text-3xl font-extrabold">+{overallLift.toFixed(0)}%</span> average lift
                     </p>
-                    <p className="text-sm text-white/80 mb-6">across {locales.length} markets with {totalVisitors.toLocaleString()} simulated visitors</p>
+                    <p className="text-sm text-white/90 mb-6">across {locales.length} markets with {totalVisitors.toLocaleString()} simulated visitors</p>
                     <div className="flex gap-3 justify-center">
-                      <Button onClick={() => router.push(`/projects/${id}/adapt`)} className="bg-white text-indigo-600 hover:bg-gray-50 font-semibold shadow-xl rounded-xl">
+                      <Button onClick={() => router.push(`/projects/${id}/adapt`)} className="bg-white text-teal-800 hover:bg-teal-50 font-bold shadow-xl rounded-xl border-0">
                         <Globe className="w-4 h-4 mr-2" />View Adaptations
                       </Button>
-                      <Button onClick={() => router.push(`/projects/${id}/preview`)} variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-xl">
+                      <Button onClick={() => router.push(`/projects/${id}/preview`)} variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-xl font-semibold">
                         Preview Landing Page
                       </Button>
                     </div>

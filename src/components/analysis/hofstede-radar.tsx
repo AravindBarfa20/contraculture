@@ -49,9 +49,9 @@ export function HofstedeRadar({ sourceLocale, targetLocale }: HofstedeRadarProps
           <Radar
             name={`${getFlag(targetLocale)} ${getCountryName(targetLocale)}`}
             dataKey={targetLocale}
-            stroke="#6366f1"
-            fill="#6366f1"
-            fillOpacity={0.2}
+            stroke="#0d9488"
+            fill="#0d9488"
+            fillOpacity={0.25}
             strokeWidth={2}
           />
           <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "8px" }} />

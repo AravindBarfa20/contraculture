@@ -20,7 +20,7 @@ export const STRING_TYPES = [
 export const PERSUASION_CATEGORIES = [
   { value: "individualist", label: "Individualist", color: "bg-blue-500" },
   { value: "collectivist", label: "Collectivist", color: "bg-green-500" },
-  { value: "authority", label: "Authority", color: "bg-purple-500" },
+  { value: "authority", label: "Authority", color: "bg-amber-500" },
   { value: "scarcity", label: "Scarcity", color: "bg-red-500" },
   { value: "social_proof", label: "Social Proof", color: "bg-yellow-500" },
   { value: "uncertainty_reducing", label: "Uncertainty Reducing", color: "bg-teal-500" },

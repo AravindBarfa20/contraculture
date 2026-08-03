@@ -215,12 +215,12 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                     return (
                       <div key={step.key} className="flex items-center flex-1">
                         <div className={`flex flex-col items-center ${isComplete ? "opacity-100" : "opacity-40"}`}>
-                          <motion.div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl mb-2 transition-all ${isCurrent ? "ring-4 ring-indigo-500/20 bg-indigo-50" : isComplete ? "bg-green-50" : "bg-muted"}`} whileHover={{ scale: 1.1 }}>
+                          <motion.div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl mb-2 transition-all ${isCurrent ? "ring-4 ring-teal-500/20 bg-teal-50 dark:bg-teal-950" : isComplete ? "bg-emerald-50 dark:bg-emerald-950" : "bg-muted"}`} whileHover={{ scale: 1.1 }}>
                             {step.icon}
                           </motion.div>
-                          <span className={`text-xs font-medium ${isCurrent ? "text-indigo-600" : ""}`}>{step.label}</span>
+                          <span className={`text-xs font-medium ${isCurrent ? "text-teal-700 font-bold" : ""}`}>{step.label}</span>
                         </div>
-                        {index < statusSteps.length - 1 && (<div className={`flex-1 h-0.5 mx-3 mb-6 ${index < currentStepIndex ? "bg-green-400" : "bg-border"}`} />)}
+                        {index < statusSteps.length - 1 && (<div className={`flex-1 h-0.5 mx-3 mb-6 ${index < currentStepIndex ? "bg-emerald-400" : "bg-border"}`} />)}
                       </div>
                     );
                   })}
@@ -231,9 +231,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {[
-              { action: "analyze", label: "1. Analyze Persuasion", icon: Sparkles, color: "from-blue-500 to-blue-600", disabled: isProcessing },
-              { action: "adapt", label: "2. Cultural Adaptations", icon: Globe, color: "from-purple-500 to-purple-600", disabled: isProcessing || project.status === "draft" },
-              { action: "simulate", label: "3. Simulate A/B Test", icon: BarChart3, color: "from-green-500 to-green-600", disabled: isProcessing || project.status === "draft" || project.status === "analyzed" },
+              { action: "analyze", label: "1. Analyze Persuasion", icon: Sparkles, color: "from-teal-600 to-cyan-600", disabled: isProcessing },
+              { action: "adapt", label: "2. Cultural Adaptations", icon: Globe, color: "from-amber-600 to-orange-600", disabled: isProcessing || project.status === "draft" },
+              { action: "simulate", label: "3. Simulate A/B Test", icon: BarChart3, color: "from-emerald-600 to-teal-600", disabled: isProcessing || project.status === "draft" || project.status === "analyzed" },
             ].map((btn) => {
               const Icon = btn.icon;
               const isActive = btn.action === "analyze" ? analyzing : btn.action === "adapt" ? adapting : simulating;
@@ -251,23 +251,23 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           {(project.status === "adapted" || project.status === "simulated") && (
             <div className="flex gap-3 mb-8 flex-wrap">
               <motion.div whileHover={{ x: 4 }}>
-                <Button variant="outline" className="border-2 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100" onClick={() => router.push(`/projects/${id}/preview`)}>
+                <Button variant="outline" className="border-2 rounded-xl bg-gradient-to-r from-teal-50 to-amber-50 dark:from-teal-950/40 dark:to-amber-950/40 hover:from-teal-100 hover:to-amber-100 font-semibold" onClick={() => router.push(`/projects/${id}/preview`)}>
                   <Monitor className="w-4 h-4 mr-2" />Preview Landing Page<ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
               </motion.div>
               <motion.div whileHover={{ x: 4 }}>
-                <Button variant="outline" className="border-2 rounded-xl" onClick={() => router.push(`/projects/${id}/adapt`)}>
+                <Button variant="outline" className="border-2 rounded-xl font-semibold" onClick={() => router.push(`/projects/${id}/adapt`)}>
                   <Eye className="w-4 h-4 mr-2" />View Adaptations<ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
               </motion.div>
               <motion.div whileHover={{ x: 4 }}>
-                <Button variant="outline" className="border-2 rounded-xl" onClick={() => router.push(`/projects/${id}/matrix`)}>
+                <Button variant="outline" className="border-2 rounded-xl font-semibold" onClick={() => router.push(`/projects/${id}/matrix`)}>
                   <Grid3X3 className="w-4 h-4 mr-2" />Comparison Matrix<ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
               </motion.div>
               {project.status === "simulated" && (
                 <motion.div whileHover={{ x: 4 }}>
-                  <Button variant="outline" className="border-2 rounded-xl" onClick={() => router.push(`/projects/${id}/results`)}>
+                  <Button variant="outline" className="border-2 rounded-xl font-semibold" onClick={() => router.push(`/projects/${id}/results`)}>
                     <BarChart3 className="w-4 h-4 mr-2" />View Results<ChevronRight className="w-4 h-4 ml-1" />
                   </Button>
                 </motion.div>
@@ -278,7 +278,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           <AnimatePresence>
             {isProcessing && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}>
-                <Card className="mb-8 border-2 border-indigo-200 bg-indigo-50/50">
+                <Card className="mb-8 border-2 border-teal-200 bg-teal-50/50 dark:bg-teal-950/30">
                   <CardContent className="pt-6">
                     <LoadingSpinner message={analyzing ? "🔍 Analyzing persuasion patterns with AI..." : adapting ? "🌐 Generating cultural adaptations using Hofstede dimensions..." : "📊 Running A/B simulation across markets..."} />
                   </CardContent>

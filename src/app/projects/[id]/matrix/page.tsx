@@ -62,7 +62,7 @@ export default function MatrixPage({ params }: { params: Promise<{ id: string }>
       <main className="relative container mx-auto px-4 py-8 max-w-7xl">
         <SectionReveal>
           <div className="mb-8">
-            <Badge variant="outline" className="mb-3 text-xs font-semibold tracking-wider border-indigo-300 text-indigo-600 bg-indigo-50/50">
+            <Badge variant="outline" className="mb-3 text-xs font-semibold tracking-wider border-teal-300 text-teal-700 bg-teal-50/60 dark:bg-teal-950/40">
               <Grid3X3 className="w-3 h-3 mr-1.5" />
               COMPARISON MATRIX
             </Badge>
@@ -101,7 +101,7 @@ export default function MatrixPage({ params }: { params: Promise<{ id: string }>
                     <div className="p-4 border-r flex flex-col gap-2">
                       <Badge variant="outline" className="text-xs w-fit">{cs.string_type}</Badge>
                       {cs.persuasion_category && (
-                        <Badge className="text-xs w-fit bg-indigo-100 text-indigo-700 border-indigo-200">
+                        <Badge className="text-xs w-fit bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-200 border-teal-200">
                           {cs.persuasion_category}
                         </Badge>
                       )}

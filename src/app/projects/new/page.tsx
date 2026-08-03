@@ -163,7 +163,7 @@ export default function NewProjectPage() {
             <Card className="border-2 overflow-hidden bg-card/90 backdrop-blur-sm">
               <CardHeader className="pb-2">
                 <div className="flex items-center gap-2">
-                  <Wand2 className="w-5 h-5 text-purple-500" />
+                  <Wand2 className="w-5 h-5 text-teal-600" />
                   <CardTitle className="text-base">Quick Start Templates</CardTitle>
                 </div>
                 <CardDescription className="text-xs">Or pick a template to pre-fill copy strings</CardDescription>
@@ -177,11 +177,11 @@ export default function NewProjectPage() {
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.97 }}
                       onClick={() => applyTemplate(i)}
-                      className={`flex items-center gap-2 px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-purple-500 bg-purple-50 text-purple-700 shadow-md" : "border-border hover:border-purple-300 hover:bg-purple-50/30"}`}
+                      className={`flex items-center gap-2 px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${selectedTemplate === i ? "border-teal-500 bg-teal-50 text-teal-800 dark:bg-teal-950/50 dark:text-teal-200 shadow-md" : "border-border hover:border-teal-300 hover:bg-teal-50/30"}`}
                     >
                       <span className="text-lg">{template.emoji}</span>
                       <span>{template.name}</span>
-                      {selectedTemplate === i && <CheckCircle className="w-4 h-4 text-purple-500" />}
+                      {selectedTemplate === i && <CheckCircle className="w-4 h-4 text-teal-600" />}
                     </motion.button>
                   ))}
                 </div>
@@ -211,7 +211,7 @@ export default function NewProjectPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-lg">Target Markets</CardTitle>
-                    <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs text-indigo-600">Select All</Button>
+                    <Button type="button" variant="ghost" size="sm" onClick={selectAllLocales} className="text-xs text-teal-700 font-semibold">Select All</Button>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -221,11 +221,11 @@ export default function NewProjectPage() {
                       return (
                         <motion.button key={locale.code} type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                           onClick={() => toggleLocale(locale.code)}
-                          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${isSelected ? "border-indigo-500 bg-indigo-50 text-indigo-700 shadow-sm" : "border-border hover:border-indigo-300 hover:bg-indigo-50/30"}`}
+                          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${isSelected ? "border-amber-500 bg-amber-50 text-amber-800 dark:bg-amber-950/50 dark:text-amber-200 shadow-sm" : "border-border hover:border-amber-300 hover:bg-amber-50/30"}`}
                         >
                           <span className="text-xl">{locale.flag}</span>
                           <span>{locale.country}</span>
-                          {isSelected && <CheckCircle className="w-4 h-4 text-indigo-500" />}
+                          {isSelected && <CheckCircle className="w-4 h-4 text-amber-600" />}
                         </motion.button>
                       );
                     })}
@@ -251,21 +251,21 @@ export default function NewProjectPage() {
                   <AnimatePresence>
                     {copyStrings.map((field, index) => (
                       <motion.div key={index} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, height: 0 }} transition={{ delay: index * 0.05 }}
-                        className="border-2 rounded-xl p-4 space-y-3 hover:border-indigo-200 transition-colors"
+                        className="border-2 rounded-xl p-4 space-y-3 hover:border-teal-300 transition-colors"
                       >
                         <div className="flex items-center justify-between">
-                          <select className="text-sm border-2 rounded-lg px-3 py-1.5 bg-background font-medium focus:outline-none focus:border-indigo-400" value={field.string_type}
+                          <select className="text-sm border-2 rounded-lg px-3 py-1.5 bg-background font-medium focus:outline-none focus:border-teal-500" value={field.string_type}
                             onChange={(e) => updateCopyField(index, { string_type: e.target.value, string_key: e.target.value + "_" + index })}
                           >
                             {STRING_TYPES.map((t) => (<option key={t.value} value={t.value}>{t.label}</option>))}
                           </select>
                           {copyStrings.length > 1 && (
                             <Button type="button" variant="ghost" size="sm" onClick={() => removeCopyField(index)}>
-                              <Trash2 className="w-4 h-4 text-red-400 hover:text-red-600" />
+                              <Trash2 className="w-4 h-4 text-rose-400 hover:text-rose-600" />
                             </Button>
                           )}
                         </div>
-                        <Textarea placeholder={`Enter your ${field.string_type} copy in English...`} value={field.content} onChange={(e) => updateCopyField(index, { content: e.target.value })} rows={2} className="resize-none border-2 focus:border-indigo-400" />
+                        <Textarea placeholder={`Enter your ${field.string_type} copy in English...`} value={field.content} onChange={(e) => updateCopyField(index, { content: e.target.value })} rows={2} className="resize-none border-2 focus:border-teal-500" />
                       </motion.div>
                     ))}
                   </AnimatePresence>
@@ -276,7 +276,7 @@ export default function NewProjectPage() {
             {error && (<motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm text-red-500 bg-red-50 rounded-xl p-4 border border-red-200">{error}</motion.p>)}
 
             <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <Button type="submit" className="w-full h-14 text-lg bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:from-indigo-700 hover:via-purple-700 hover:to-indigo-700 text-white border-0 shadow-xl shadow-indigo-500/25 rounded-2xl font-semibold bg-[length:200%_auto] hover:bg-right transition-[background-position] duration-500" disabled={submitting}>
+              <Button type="submit" className="w-full h-14 text-lg bg-gradient-to-r from-teal-600 via-amber-600 to-rose-600 hover:from-teal-700 hover:via-amber-700 hover:to-rose-700 text-white border-0 shadow-xl shadow-teal-500/25 rounded-2xl font-bold bg-[length:200%_auto] hover:bg-right transition-[background-position] duration-500" disabled={submitting}>
                 {submitting ? (
                   <motion.div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full" animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />
                 ) : (
